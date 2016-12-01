@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.configJobButton = new System.Windows.Forms.Button();
             this.addClientButton = new System.Windows.Forms.Button();
             this.addJobButton = new System.Windows.Forms.Button();
@@ -230,47 +231,47 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 116);
+            this.label1.Location = new System.Drawing.Point(16, 111);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(70, 13);
             this.label1.TabIndex = 11;
-            this.label1.Text = "label1";
+            this.label1.Text = "Job Number :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 154);
+            this.label2.Location = new System.Drawing.Point(18, 154);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 12;
-            this.label2.Text = "label2";
+            this.label2.Text = "Bin Number :";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(267, 116);
+            this.label3.Location = new System.Drawing.Point(267, 111);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 13;
-            this.label3.Text = "label3";
+            this.label3.Text = "User 1 :";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(267, 154);
+            this.label4.Location = new System.Drawing.Point(267, 149);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 14;
-            this.label4.Text = "label4";
+            this.label4.Text = "User 2 :";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 195);
+            this.label5.Location = new System.Drawing.Point(9, 191);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(77, 13);
             this.label5.TabIndex = 15;
-            this.label5.Text = "label5";
+            this.label5.Text = "Expected Qty :";
             // 
             // pictureBox1
             // 
@@ -308,6 +309,7 @@
             this.Controls.Add(this.addJobButton);
             this.Controls.Add(this.addClientButton);
             this.Controls.Add(this.configJobButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.Text = "MainWindow";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);

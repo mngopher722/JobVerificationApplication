@@ -32,7 +32,7 @@ namespace Job_Verification_Application
 
         public void cWAddClientTextBox_Leave(object sender, EventArgs e)
         {
-            bool duplicateClient = true;
+            duplicateClient = true;
             string cmdcheck = "select count (*) FROM CLIENT where ClientName = @ClientName";
             using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
             using (SqlCommand datacheck = new SqlCommand(cmdcheck, conn))
@@ -67,10 +67,12 @@ namespace Job_Verification_Application
             if (cWAddClientTextBox.TextLength == 0)
             {
                 MessageBox.Show("Please Enter Client Name");
+                cWAddClientTextBox.Focus();
             }
-            else if (duplicateClient == true)
+            else if (duplicateClient)
             {
                 MessageBox.Show("Client Already Exists in Database");
+                cWAddClientTextBox.Focus();
             }
             else
             {

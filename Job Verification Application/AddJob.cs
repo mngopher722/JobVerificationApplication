@@ -13,9 +13,10 @@ namespace Job_Verification_Application
 {
     public partial class AddJob : Form
     {
-        public bool duplicateJob { get; private set; }
+        public bool notDuplicateJob { get; private set; }
         public bool jwClientValidated { get; private set; }
         public bool jWJobDescValidated { get; private set; }
+        public int result { get; private set; }
 
         public AddJob()
         {
@@ -39,7 +40,7 @@ namespace Job_Verification_Application
 
         private void jWJobNumMaskedTB_Leave(object sender, EventArgs e)
         {
-            bool duplicateJob = true;
+            notDuplicateJob = false;
             string cmdcheck = "select count (*) FROM JOB where JobID = @JobID";
             using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
             using (SqlCommand datacheck = new SqlCommand(cmdcheck, conn))
@@ -49,7 +50,7 @@ namespace Job_Verification_Application
                 jobid.Value = jWJobNumMaskedTB.Text;
 
                 datacheck.Parameters.Add(jobid);
-                int result = (int)datacheck.ExecuteScalar();
+                result = (int)datacheck.ExecuteScalar();
 
                 if (result > 0)
                 {
@@ -58,7 +59,7 @@ namespace Job_Verification_Application
                 }
                 else
                 {
-                    duplicateJob = false;
+                    notDuplicateJob = true;
                 }
             }
         }
@@ -104,9 +105,41 @@ namespace Job_Verification_Application
             }
         }
 
+        private bool Validate()
+        {
+            notDuplicateJob = false;
+            jWJobDescValidated = false;
+            jwClientValidated = false;
+
+            if (jWJobDescTextBox.TextLength == 0)
+            {
+                MessageBox.Show("Please Enter Description of Job");
+                jWJobDescTextBox.Focus();
+            }
+            else if (jWJobDescTextBox.TextLength > 50)
+            {
+                MessageBox.Show("Please Limit Description to Under 50 Characters");
+                jWJobDescTextBox.Focus();
+            }
+            else
+            {
+                jWJobDescValidated = true;
+            }
+
+            if (jWClientComboBox.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Client Associated with Job");
+                jWClientComboBox.Focus();
+            }
+            else
+            {
+                jwClientValidated = true;
+            }
+            return false;
+        }
         private void jWSubmitButton_Click(object sender, EventArgs e)
         {
-            if ((duplicateJob = false) && (jwClientValidated = true) && (jWJobDescValidated = true)) 
+            if (Validate()) 
             {
                 try
                 {
@@ -124,6 +157,7 @@ namespace Job_Verification_Application
                         dataAdd.Parameters.Add(jobid);
                         dataAdd.Parameters.Add(jobdesc);
                         dataAdd.Parameters.Add(client);
+                        dataAdd.CommandType = CommandType.Text;
                         dataAdd.ExecuteNonQuery();
                         
                     }
@@ -132,7 +166,7 @@ namespace Job_Verification_Application
                 {
                     MessageBox.Show("Failed to Add Job to Database");
                 }
-                this.Close();
+                    this.Close();
             }
             else
             {
@@ -148,7 +182,7 @@ namespace Job_Verification_Application
             try
             {
                 conn.Open();
-                SqlCommand cmdclient = new SqlCommand("select ClientID, ClientName from Client order by ClientName", conn);
+                SqlCommand cmdclient = new SqlCommand("select ClientID, ClientName from Client order by ClientID", conn);
                 SqlDataAdapter da = new SqlDataAdapter();
                 SqlDataAdapter db = new SqlDataAdapter();
                 SqlDataAdapter dc = new SqlDataAdapter();
@@ -159,7 +193,7 @@ namespace Job_Verification_Application
                 jWClientComboBox.DataSource = client.Tables[0];
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Exception Message
                 MessageBox.Show("Connection to the database has quit. Please reload Database");

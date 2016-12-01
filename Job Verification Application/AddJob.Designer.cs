@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddJob));
             this.jWJobNumMaskedTB = new System.Windows.Forms.MaskedTextBox();
             this.jobVerificationDataSet = new Job_Verification_Application.JobVerificationDataSet();
             this.jWJobDescTextBox = new System.Windows.Forms.TextBox();
@@ -149,6 +150,7 @@
             this.Controls.Add(this.jWClientComboBox);
             this.Controls.Add(this.jWJobDescTextBox);
             this.Controls.Add(this.jWJobNumMaskedTB);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddJob";
             this.Text = "AddJob";
             this.Load += new System.EventHandler(this.AddJob_Load);

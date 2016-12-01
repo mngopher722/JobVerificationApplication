@@ -28,15 +28,15 @@ namespace Job_Verification_Application
         private void Form1_Shown(object sender, EventArgs e)
         {
             tmr = new Timer();
-            //set time interval 3 sec
-            tmr.Interval = 3000;
+            //set time interval 2.5 sec
+            tmr.Interval = 2500;
             //starts the timer
             tmr.Start();
             tmr.Tick += tmr_Tick;
         }
         void tmr_Tick(object sender, EventArgs e)
         {
-            //after 3 sec stop the timer
+            //after 2.5 sec stop the timer
             tmr.Stop();
             //display mainform
             MainWindow mainwindow = new MainWindow();
