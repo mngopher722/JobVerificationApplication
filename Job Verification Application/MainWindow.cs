@@ -47,5 +47,11 @@ namespace Job_Verification_Application
             AddJob addJob = new AddJob();
             addJob.Show();
         }
+
+        private void addUserButton_Click(object sender, EventArgs e)
+        {
+            AddUser addUser = new AddUser();
+            addUser.Show();
+        }
     }
 }

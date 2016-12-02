@@ -33,11 +33,6 @@ namespace Job_Verification_Application
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void jWJobNumMaskedTB_Leave(object sender, EventArgs e)
         {
             notDuplicateJob = false;
