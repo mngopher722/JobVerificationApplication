@@ -76,6 +76,7 @@
             this.configJobButton.TabIndex = 6;
             this.configJobButton.Text = "Configure Job";
             this.configJobButton.UseVisualStyleBackColor = true;
+            this.configJobButton.Click += new System.EventHandler(this.configJobButton_Click);
             // 
             // addClientButton
             // 
@@ -128,14 +129,11 @@
             // mWJobComboBox
             // 
             this.mWJobComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.jOBXBINBindingSource, "JobID_X_BinID", true));
-            this.mWJobComboBox.DataSource = this.jOBXBINBindingSource;
-            this.mWJobComboBox.DisplayMember = "FK_JobID";
             this.mWJobComboBox.FormattingEnabled = true;
             this.mWJobComboBox.Location = new System.Drawing.Point(108, 108);
             this.mWJobComboBox.Name = "mWJobComboBox";
-            this.mWJobComboBox.Size = new System.Drawing.Size(109, 21);
+            this.mWJobComboBox.Size = new System.Drawing.Size(136, 21);
             this.mWJobComboBox.TabIndex = 0;
-            this.mWJobComboBox.ValueMember = "FK_JobID";
             // 
             // jOBXBINBindingSource
             // 
@@ -170,7 +168,7 @@
             this.mWBinComboBox.FormattingEnabled = true;
             this.mWBinComboBox.Location = new System.Drawing.Point(108, 146);
             this.mWBinComboBox.Name = "mWBinComboBox";
-            this.mWBinComboBox.Size = new System.Drawing.Size(109, 21);
+            this.mWBinComboBox.Size = new System.Drawing.Size(136, 21);
             this.mWBinComboBox.TabIndex = 1;
             this.mWBinComboBox.ValueMember = "FK_BinID";
             // 
@@ -190,14 +188,11 @@
             // mWUser1ComboBox
             // 
             this.mWUser1ComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.uSERBindingSource, "UserID", true));
-            this.mWUser1ComboBox.DataSource = this.uSERBindingSource;
-            this.mWUser1ComboBox.DisplayMember = "UserLName";
             this.mWUser1ComboBox.FormattingEnabled = true;
             this.mWUser1ComboBox.Location = new System.Drawing.Point(340, 108);
             this.mWUser1ComboBox.Name = "mWUser1ComboBox";
             this.mWUser1ComboBox.Size = new System.Drawing.Size(121, 21);
             this.mWUser1ComboBox.TabIndex = 3;
-            this.mWUser1ComboBox.ValueMember = "UserID";
             // 
             // uSERBindingSource
             // 
@@ -207,14 +202,11 @@
             // mWUser2ComboBox
             // 
             this.mWUser2ComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.uSERBindingSource, "UserID", true));
-            this.mWUser2ComboBox.DataSource = this.uSERBindingSource;
-            this.mWUser2ComboBox.DisplayMember = "UserLName";
             this.mWUser2ComboBox.FormattingEnabled = true;
             this.mWUser2ComboBox.Location = new System.Drawing.Point(340, 146);
             this.mWUser2ComboBox.Name = "mWUser2ComboBox";
             this.mWUser2ComboBox.Size = new System.Drawing.Size(121, 21);
             this.mWUser2ComboBox.TabIndex = 4;
-            this.mWUser2ComboBox.ValueMember = "UserID";
             // 
             // uSERTableAdapter
             // 
@@ -225,7 +217,7 @@
             this.maskedTextBox1.Location = new System.Drawing.Point(108, 188);
             this.maskedTextBox1.Mask = "00000";
             this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(109, 20);
+            this.maskedTextBox1.Size = new System.Drawing.Size(136, 20);
             this.maskedTextBox1.TabIndex = 2;
             this.maskedTextBox1.ValidatingType = typeof(int);
             // 
