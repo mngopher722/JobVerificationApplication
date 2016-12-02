@@ -102,6 +102,7 @@
             this.Controls.Add(this.uWLastNameTextBox);
             this.Controls.Add(this.uWFirstNameTextBox);
             this.Name = "AddUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddUser";
             this.ResumeLayout(false);
             this.PerformLayout();

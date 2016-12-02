@@ -107,5 +107,85 @@ namespace Job_Verification_Application
             ConfigJob configJob = new ConfigJob();
             configJob.Show();
         }
+
+        private void startProcessButton_Click(object sender, EventArgs e)
+        {
+            ScanningWindow scanWindow = new ScanningWindow();
+            if (Validate()) 
+            {
+                try
+                {
+                    //List jobs = new List();
+                    string cmdquery = "SELECT JobID_X_BinID as 'Process Number', FK_JobID, FK_BinID FROM JOB_X_BIN WHERE FK_JobID = @JobID AND FK_BinID = @BinID";
+                    using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
+                    using (SqlCommand dataquery = new SqlCommand(cmdquery, conn))
+                    
+                    {
+                        conn.Open();
+                        //using (SqlDataReader reader = cmdquery.ExecuteReader())
+                        //{
+                        //    if (reader.HasRows)
+                        //    {
+                        //        while(reader.Read())
+                        //        {
+                        SqlParameter jobbinid = new SqlParameter("@jobbinid", SqlDbType.Int);
+                        SqlParameter jobid = new SqlParameter("@JobID", SqlDbType.Int);
+                        SqlParameter binid = new SqlParameter("@JobDesc", SqlDbType.TinyInt);
+                        jobid.Value = mWJobComboBox.SelectedText;
+                        binid.Value = mWBinComboBox.SelectedText;
+                        dataquery.Parameters.Add(jobid);
+                        dataquery.Parameters.Add(binid);
+                        dataquery.CommandType = CommandType.Text;
+                        dataquery.ExecuteScalar();
+                        
+                        //        }
+                        //    }
+                        //}
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Failed to Start Processing");
+                }
+                    this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Entries Failed Validation");
+            }
+            
+        }
+            //static public int GetJobxBinID();
+            //{
+            //    Int32 newProdID = 0;
+            //    string sql =
+            //        "INSERT INTO Production.ProductCategory (Name) VALUES (@Name); "
+            //        + "SELECT CAST(scope_identity() AS int)";
+            //    using (SqlConnection conn = new SqlConnection(connString))
+            //    {
+            //        SqlCommand cmd = new SqlCommand(sql, conn);
+            //        cmd.Parameters.Add("@Name", SqlDbType.VarChar);
+            //        cmd.Parameters["@name"].Value = newName;
+            //        try
+            //        {
+            //            conn.Open();
+            //            newProdID = (Int32)cmd.ExecuteScalar();
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            Console.WriteLine(ex.Message);
+            //        }
+            //    }
+            //    return (int)newProdID;
+            //}
+        }
+        //public void scanWindow_Pass(int jxbID, int xqty)
+        //{
+        //    int xpectedQty;
+        //    int jobxbin_id;
+        //    int.TryParse(xqtyTextBox.Text, out xpectedQty);
+        //    int.TryParse(mW);
+        //    xqty = xpectedQty;
+        //}
     }
-}
+

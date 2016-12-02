@@ -50,7 +50,7 @@
             this.uSERBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mWUser2ComboBox = new System.Windows.Forms.ComboBox();
             this.uSERTableAdapter = new Job_Verification_Application.JobVerificationDataSetTableAdapters.USERTableAdapter();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.xqtyTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -125,6 +125,7 @@
             this.startProcessButton.TabIndex = 5;
             this.startProcessButton.Text = "Start Processing";
             this.startProcessButton.UseVisualStyleBackColor = true;
+            this.startProcessButton.Click += new System.EventHandler(this.startProcessButton_Click);
             // 
             // mWJobComboBox
             // 
@@ -212,14 +213,14 @@
             // 
             this.uSERTableAdapter.ClearBeforeFill = true;
             // 
-            // maskedTextBox1
+            // xqtyTextBox
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(108, 188);
-            this.maskedTextBox1.Mask = "00000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(136, 20);
-            this.maskedTextBox1.TabIndex = 2;
-            this.maskedTextBox1.ValidatingType = typeof(int);
+            this.xqtyTextBox.Location = new System.Drawing.Point(108, 188);
+            this.xqtyTextBox.Mask = "00000";
+            this.xqtyTextBox.Name = "xqtyTextBox";
+            this.xqtyTextBox.Size = new System.Drawing.Size(136, 20);
+            this.xqtyTextBox.TabIndex = 2;
+            this.xqtyTextBox.ValidatingType = typeof(int);
             // 
             // label1
             // 
@@ -291,7 +292,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.xqtyTextBox);
             this.Controls.Add(this.mWUser2ComboBox);
             this.Controls.Add(this.mWUser1ComboBox);
             this.Controls.Add(this.mWBinComboBox);
@@ -304,6 +305,7 @@
             this.Controls.Add(this.configJobButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainWindow";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
             this.Load += new System.EventHandler(this.MainWindow_Load);
@@ -341,7 +343,7 @@
         private System.Windows.Forms.ComboBox mWUser2ComboBox;
         private System.Windows.Forms.BindingSource uSERBindingSource;
         private JobVerificationDataSetTableAdapters.USERTableAdapter uSERTableAdapter;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox xqtyTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

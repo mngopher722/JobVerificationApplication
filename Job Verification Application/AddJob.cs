@@ -30,7 +30,6 @@ namespace Job_Verification_Application
             // TODO: This line of code loads data into the 'jobVerificationDataSet.BIN' table. You can move, or remove it, as needed.
             //this.bINTableAdapter.Fill(this.jobVerificationDataSet.BIN);
             FillComboBox();
-
         }
 
         private void jWJobNumMaskedTB_Leave(object sender, EventArgs e)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigJob));
             this.cfgWJobNumComboBox = new System.Windows.Forms.ComboBox();
             this.cfgWBinNumComboBox = new System.Windows.Forms.ComboBox();
             this.cfgWCancelButton = new System.Windows.Forms.Button();
@@ -79,20 +80,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 35);
+            this.label1.Location = new System.Drawing.Point(47, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(70, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
+            this.label1.Text = "Job Number :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(32, 85);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(85, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "label2";
+            this.label2.Text = "Number of Bins :";
             // 
             // ConfigJob
             // 
@@ -105,7 +106,9 @@
             this.Controls.Add(this.cfgWCancelButton);
             this.Controls.Add(this.cfgWBinNumComboBox);
             this.Controls.Add(this.cfgWJobNumComboBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfigJob";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ConfigJob";
             this.Load += new System.EventHandler(this.ConfigJob_Load);
             this.ResumeLayout(false);
