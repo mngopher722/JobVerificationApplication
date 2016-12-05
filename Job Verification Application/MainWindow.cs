@@ -15,6 +15,9 @@ namespace Job_Verification_Application
 {
     public partial class MainWindow : Form
     {
+        public object jobid { get; private set; }
+        public SqlCommand querybin { get; private set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -64,21 +67,25 @@ namespace Job_Verification_Application
             DataSet user1 = new DataSet();
             DataSet user2 = new DataSet();
             DataSet jobnum = new DataSet();
+            //DataSet binnum = new DataSet();
             try
             {
                 conn.Open();
                 SqlCommand cmdUser = new SqlCommand("select CONCAT(UserLName, ', ', UserFName)as UserLastFirst, UserID UserFName, UserLName from dbo.[USER] order by UserLastFirst", conn);
                 SqlCommand cmdJob = new SqlCommand("select CONCAT(JobID,' - ',ClientName) as JobClient, JobID from dbo.[JOB], CLIENT Where ClientID = FK_ClientID order by JobID", conn);
-                SqlCommand cmdBin = new SqlCommand("select BinID from ");
+                //SqlCommand cmdBin = new SqlCommand("select JobID_X_BinID, FK_BinID, FK_JobID from JOB_X_BIN WHERE FK_JobID = @jobid", conn);
                 SqlDataAdapter ucb1 = new SqlDataAdapter();
                 SqlDataAdapter ucb2 = new SqlDataAdapter();
                 SqlDataAdapter job = new SqlDataAdapter();
+                //SqlDataAdapter bin = new SqlDataAdapter();
                 ucb1.SelectCommand = cmdUser;
                 ucb2.SelectCommand = cmdUser;
                 job.SelectCommand = cmdJob;
+                //bin.SelectCommand = cmdBin;
                 ucb1.Fill(user1);
                 ucb2.Fill(user2);
                 job.Fill(jobnum);
+                //bin.Fill(binnum);
                 mWUser1ComboBox.DisplayMember = "UserLastFirst";
                 mWUser1ComboBox.ValueMember = "UserID";
                 mWUser1ComboBox.DataSource = user1.Tables[0];
@@ -88,6 +95,9 @@ namespace Job_Verification_Application
                 mWJobComboBox.DisplayMember = "JobClient";
                 mWJobComboBox.ValueMember = "JobID";
                 mWJobComboBox.DataSource = jobnum.Tables[0];
+                //mWBinComboBox.DisplayMember = "FK_BinID";
+                //mWBinComboBox.ValueMember = "JobID_X_BinID";
+                //mWBinComboBox.DataSource = binnum.Tables[0];
 
             }
             catch (Exception)
@@ -101,6 +111,19 @@ namespace Job_Verification_Application
                 conn.Dispose();
             }
         }
+        protected void FillBinComboBox()
+        {
+            //string querybins = "select JobID_X_BinID, FK_BinID, FK_JobID from JOB_X_BIN WHERE FK_JobID = @jobid";
+            string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
+            SqlConnection objConn = new SqlConnection(conString);
+            objConn.Open();
+            SqlDataAdapter binadapter = new SqlDataAdapter("select JobID_X_BinID, FK_BinID, FK_JobID from JOB_X_BIN WHERE FK_JobID = @jobid", objConn);
+            DataSet dsBins = new DataSet("Bins");
+            binadapter.FillSchema(dsBins, SchemaType.Source, "Bins");
+            binadapter.Fill(dsBins, "Bins");
+            binadapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+
+        }
 
         private void configJobButton_Click(object sender, EventArgs e)
         {
@@ -111,7 +134,7 @@ namespace Job_Verification_Application
         private void startProcessButton_Click(object sender, EventArgs e)
         {
             ScanningWindow scanWindow = new ScanningWindow();
-            if (Validate()) 
+            if (Validate())
             {
                 try
                 {
@@ -119,7 +142,7 @@ namespace Job_Verification_Application
                     string cmdquery = "SELECT JobID_X_BinID as 'Process Number', FK_JobID, FK_BinID FROM JOB_X_BIN WHERE FK_JobID = @JobID AND FK_BinID = @BinID";
                     using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
                     using (SqlCommand dataquery = new SqlCommand(cmdquery, conn))
-                    
+
                     {
                         conn.Open();
                         //using (SqlDataReader reader = cmdquery.ExecuteReader())
@@ -137,7 +160,7 @@ namespace Job_Verification_Application
                         dataquery.Parameters.Add(binid);
                         dataquery.CommandType = CommandType.Text;
                         dataquery.ExecuteScalar();
-                        
+
                         //        }
                         //    }
                         //}
@@ -147,38 +170,42 @@ namespace Job_Verification_Application
                 {
                     MessageBox.Show("Failed to Start Processing");
                 }
-                    this.Close();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Entries Failed Validation");
             }
-            
+
         }
-            //static public int GetJobxBinID();
-            //{
-            //    Int32 newProdID = 0;
-            //    string sql =
-            //        "INSERT INTO Production.ProductCategory (Name) VALUES (@Name); "
-            //        + "SELECT CAST(scope_identity() AS int)";
-            //    using (SqlConnection conn = new SqlConnection(connString))
-            //    {
-            //        SqlCommand cmd = new SqlCommand(sql, conn);
-            //        cmd.Parameters.Add("@Name", SqlDbType.VarChar);
-            //        cmd.Parameters["@name"].Value = newName;
-            //        try
-            //        {
-            //            conn.Open();
-            //            newProdID = (Int32)cmd.ExecuteScalar();
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            Console.WriteLine(ex.Message);
-            //        }
-            //    }
-            //    return (int)newProdID;
-            //}
+
+        private void mWJobComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int jobnumber;
+            FillBinComboBox();
         }
+        //    static public int GetJobxBinID();
+        //        {
+        //            int JobBinID = 0;
+        //    string sql = "INSERT INTO Production.ProductCategory (Name) VALUES (@Name);
+        //            using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"));
+        //            {
+        //                SqlCommand cmd = new SqlCommand(sql, conn);
+        //cmd.Parameters.Add("@Name", SqlDbType.VarChar);
+        //                cmd.Parameters["@name"].Value = newName;
+        //                try
+        //                {
+        //                    conn.Open();
+        //                    newProdID = (Int32)cmd.ExecuteScalar();
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    Console.WriteLine(ex.Message);
+        //                }
+        //            }
+        //            return (int)newProdID;
+        //        }
+        //    }
         //public void scanWindow_Pass(int jxbID, int xqty)
         //{
         //    int xpectedQty;
@@ -188,4 +215,5 @@ namespace Job_Verification_Application
         //    xqty = xpectedQty;
         //}
     }
+}
 

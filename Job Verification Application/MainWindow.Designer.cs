@@ -135,6 +135,7 @@
             this.mWJobComboBox.Name = "mWJobComboBox";
             this.mWJobComboBox.Size = new System.Drawing.Size(136, 21);
             this.mWJobComboBox.TabIndex = 0;
+            this.mWJobComboBox.SelectionChangeCommitted += new System.EventHandler(this.mWJobComboBox_SelectionChangeCommitted);
             // 
             // jOBXBINBindingSource
             // 
