@@ -13,7 +13,8 @@ namespace Job_Verification_Application
 {
     public partial class ScanningWindow : Form
     {
-        string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification";
+        //string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification";
+        string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
         public ScanningWindow()
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace Job_Verification_Application
         }
         protected void FillDataGrid()
         {
-            //string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
+            
             SqlConnection conn = new SqlConnection(conString);
             DataTable jxb = new DataTable();
             try

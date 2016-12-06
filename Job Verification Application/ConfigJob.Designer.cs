@@ -50,7 +50,29 @@
             // 
             // cfgWBinNumComboBox
             // 
-            this.cfgWBinNumComboBox.FormattingEnabled = true;
+            this.cfgWBinNumComboBox.AutoCompleteCustomSource.AddRange(new string[] {
+            "--Please Select Number of Bins--",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"});
+            this.cfgWBinNumComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cfgWBinNumComboBox.Location = new System.Drawing.Point(129, 82);
             this.cfgWBinNumComboBox.Name = "cfgWBinNumComboBox";
             this.cfgWBinNumComboBox.Size = new System.Drawing.Size(121, 21);

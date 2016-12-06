@@ -16,7 +16,8 @@ namespace Job_Verification_Application
 {
     public partial class AddUser : Form
     {
-        string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
+        //string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
+        string conString = @"Data Source = MHDC2\SQLEXPRESS2014;Initial Catalog = JobVerification; User ID = Ticketmaster";
         public AddUser()
         {
             InitializeComponent();

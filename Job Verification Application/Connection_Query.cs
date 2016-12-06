@@ -10,10 +10,10 @@ namespace Job_Verification_Application
 {
     public class Connection_Query
     {
-        private static string CONNECTION_STRING_DEVELOPMENT = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
+        //private static string CONNECTION_STRING_DEVELOPMENT = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
         private static string CONNECTION_STRING_PRODUCTION = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
         public static Connection_Query INSTANCE { get; } = new Connection_Query();
-        private string ConnectionString = CONNECTION_STRING_DEVELOPMENT;
+        private string ConnectionString = CONNECTION_STRING_PRODUCTION;
         public SqlConnection con { get; set; }
 
         public Connection_Query()

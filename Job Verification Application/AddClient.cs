@@ -13,7 +13,8 @@ namespace Job_Verification_Application
 {
     public partial class AddClient : Form
     {
-        string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
+        //string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
+        string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
         public bool duplicateClient { get; private set; }
 
         public AddClient()
@@ -28,14 +29,13 @@ namespace Job_Verification_Application
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        { }
+        //private void textBox1_TextChanged(object sender, EventArgs e)
+        //{ }
 
         public void cWAddClientTextBox_Leave(object sender, EventArgs e)
         {
             duplicateClient = true;
             string cmdcheck = "select count (*) FROM CLIENT where ClientName = @ClientName";
-            //using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
             using (SqlConnection conn = new SqlConnection(conString))
             using (SqlCommand datacheck = new SqlCommand(cmdcheck, conn))
             {

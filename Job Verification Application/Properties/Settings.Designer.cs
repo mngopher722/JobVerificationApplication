@@ -26,9 +26,9 @@ namespace Job_Verification_Application.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        //[global::System.Configuration.DefaultSettingValueAttribute("Data Source=MHDC2\\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketma" +
-            //"ster")]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LENOVO-PC\\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MHDC2\\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketma" +
+            "ster")]
+        //[global::System.Configuration.DefaultSettingValueAttribute("Data Source=LENOVO-PC\\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security=True")]
 
 
         public string JobVerificationConnectionString {

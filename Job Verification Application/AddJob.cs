@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,12 +14,13 @@ namespace Job_Verification_Application
 {
     public partial class AddJob : Form
     {
-        //string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
-        string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
+        string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
+        //string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
         public bool notDuplicateJob { get; private set; }
         public bool jwClientValidated { get; private set; }
         public bool jWJobDescValidated { get; private set; }
         public int result { get; private set; }
+        public bool validtextbox { get; private set; }
 
         public AddJob()
         {
@@ -28,7 +30,7 @@ namespace Job_Verification_Application
         private void AddJob_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'jobVerificationDataSet.CLIENT' table. You can move, or remove it, as needed.
-            this.cLIENTTableAdapter.Fill(this.jobVerificationDataSet.CLIENT);
+            //this.cLIENTTableAdapter.Fill(this.jobVerificationDataSet.CLIENT);
             // TODO: This line of code loads data into the 'jobVerificationDataSet.BIN' table. You can move, or remove it, as needed.
             //this.bINTableAdapter.Fill(this.jobVerificationDataSet.BIN);
             FillComboBox();
@@ -36,28 +38,28 @@ namespace Job_Verification_Application
 
         private void jWJobNumMaskedTB_Leave(object sender, EventArgs e)
         {
-            notDuplicateJob = false;
-            string cmdcheck = "select count (*) FROM JOB where JobID = @JobID";
-            using (SqlConnection conn = new SqlConnection(conString))
-            using (SqlCommand datacheck = new SqlCommand(cmdcheck, conn))
-            {
-                conn.Open();
-                SqlParameter jobid = new SqlParameter("@JobID", SqlDbType.Int);
-                jobid.Value = jWJobNumMaskedTB.Text;
+            //notDuplicateJob = false;
+            //string cmdcheck = "select count (*) FROM JOB where JobID = @JobID";
+            //using (SqlConnection conn = new SqlConnection(conString))
+            //using (SqlCommand datacheck = new SqlCommand(cmdcheck, conn))
+            //{
+            //    conn.Open();
+            //    SqlParameter jobid = new SqlParameter("@JobID", SqlDbType.Int);
+            //    jobid.Value = jWJobNumMaskedTB.Text;
 
-                datacheck.Parameters.Add(jobid);
-                result = (int)datacheck.ExecuteScalar();
+            //    datacheck.Parameters.Add(jobid);
+            //    result = (int)datacheck.ExecuteScalar();
 
-                if (result > 0)
-                {
-                    MessageBox.Show("Job Already Exists in Database");
-                    jWJobNumMaskedTB.Focus();
-                }
-                else
-                {
-                    notDuplicateJob = true;
-                }
-            }
+            //    if (result > 0)
+            //    {
+            //        MessageBox.Show("Job Already Exists in Database");
+            //        jWJobNumMaskedTB.Focus();
+            //    }
+            //    else
+            //    {
+            //        notDuplicateJob = true;
+            //    }
+            //}
         }
 
         private void jWCancelButton_Click(object sender, EventArgs e)
@@ -101,11 +103,53 @@ namespace Job_Verification_Application
             }
         }
 
+        public bool IsNumeric(string input)
+        {
+            validtextbox = false;
+            if (!Regex.IsMatch(input, @"/^[-+]?[1-9]\d*$/"))
+            {
+                MessageBox.Show("Textbox only accepts Numerical Values");
+                validtextbox = false;
+            }
+            else
+            {
+                validtextbox = true;
+            }
+            return Regex.IsMatch(input, @"/^[-+]?[1-9]\d*$/");
+        }
+
         private bool Validate()
         {
+            validtextbox = false;
             notDuplicateJob = false;
             jWJobDescValidated = false;
             jwClientValidated = false;
+            IsNumeric(jWJobNumMaskedTB.Text);
+            //if (!validtextbox) ;
+
+            string cmdcheck = "select count (*) FROM JOB where JobID = @JobID";
+            using (SqlConnection conn = new SqlConnection(conString))
+            using (SqlCommand datacheck = new SqlCommand(cmdcheck, conn))
+            {
+                conn.Open();
+                SqlParameter jobid = new SqlParameter("@JobID", SqlDbType.Int);
+                jobid.Value = jWJobNumMaskedTB.Text;
+
+                datacheck.Parameters.Add(jobid);
+                result = (int)datacheck.ExecuteScalar();
+
+                if (result > 0)
+                {
+                    MessageBox.Show("Job Already Exists in Database");
+                    jWJobNumMaskedTB.Focus();
+                }
+                else
+                {
+                    notDuplicateJob = true;
+                }
+            }
+
+            
 
             if (jWJobDescTextBox.TextLength == 0)
             {
@@ -131,7 +175,7 @@ namespace Job_Verification_Application
             {
                 jwClientValidated = true;
             }
-            return false;
+            return notDuplicateJob;
         }
         private void jWSubmitButton_Click(object sender, EventArgs e)
         {
@@ -140,7 +184,7 @@ namespace Job_Verification_Application
                 try
                 {
                     string cmdadd = "INSERT into Job(JobID, JobDesc, FK_ClientID) VALUES (@JobID, @JobDesc, @ClientID)";
-                    using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
+                    using (SqlConnection conn = new SqlConnection(conString))
                     using (SqlCommand dataAdd = new SqlCommand(cmdadd, conn))
                     {
                         conn.Open();
@@ -149,7 +193,7 @@ namespace Job_Verification_Application
                         SqlParameter client = new SqlParameter("@ClientID", SqlDbType.Int);
                         jobid.Value = jWJobNumMaskedTB.Text;
                         jobdesc.Value = jWJobDescTextBox.Text;
-                        client.Value = jWClientComboBox.SelectedIndex;
+                        client.Value = jWClientComboBox.SelectedValue;
                         dataAdd.Parameters.Add(jobid);
                         dataAdd.Parameters.Add(jobdesc);
                         dataAdd.Parameters.Add(client);
@@ -158,9 +202,9 @@ namespace Job_Verification_Application
                         
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to Add Job to Database");
+                    MessageBox.Show("Failed to Add Job to Database" +ex.StackTrace +ex.Message);
                 }
                     this.Close();
             }

@@ -40,7 +40,7 @@
             this.cWAddClientTextBox.Size = new System.Drawing.Size(194, 20);
             this.cWAddClientTextBox.TabIndex = 0;
             this.cWAddClientTextBox.Text = "Please Enter Client Name";
-            this.cWAddClientTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            //this.cWAddClientTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.cWAddClientTextBox.Leave += new System.EventHandler(this.cWAddClientTextBox_Leave);
             // 
             // cWCancelButton

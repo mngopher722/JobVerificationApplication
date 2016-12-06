@@ -94,6 +94,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="JobVerificationDataSet.cs">
+      <DependentUpon>JobVerificationDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="JobVerificationDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -145,6 +148,7 @@
     <EmbeddedResource Include="ScanningWindow.resx">
       <DependentUpon>ScanningWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="JobVerificationDataSet.xsc">
       <DependentUpon>JobVerificationDataSet.xsd</DependentUpon>
     </None>
