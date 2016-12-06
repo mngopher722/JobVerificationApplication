@@ -13,6 +13,7 @@ namespace Job_Verification_Application
 {
     public partial class AddClient : Form
     {
+        string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
         public bool duplicateClient { get; private set; }
 
         public AddClient()
@@ -34,7 +35,8 @@ namespace Job_Verification_Application
         {
             duplicateClient = true;
             string cmdcheck = "select count (*) FROM CLIENT where ClientName = @ClientName";
-            using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
+            //using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
+            using (SqlConnection conn = new SqlConnection(conString))
             using (SqlCommand datacheck = new SqlCommand(cmdcheck, conn))
             {
                 conn.Open();
@@ -78,7 +80,7 @@ namespace Job_Verification_Application
             {
                 try { 
                     string cmdcheck = "INSERT into CLIENT(ClientName) VALUES (@ClientName)";
-                        using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
+                        using (SqlConnection conn = new SqlConnection(conString))
                         using (SqlCommand datacheck = new SqlCommand(cmdcheck, conn))
                         {
                             conn.Open();

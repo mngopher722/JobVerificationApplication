@@ -16,6 +16,7 @@ namespace Job_Verification_Application
 {
     public partial class AddUser : Form
     {
+        string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
         public AddUser()
         {
             InitializeComponent();
@@ -84,7 +85,8 @@ namespace Job_Verification_Application
             properLName = Validation.ConvertTo_ProperCase(uWLastNameTextBox.Text);
             duplicateUser = true;
             string cmdcheck = "select count (*) FROM dbo.[USER] where UserFName = @FirstName and UserLName = @LastName";
-            using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
+            //using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
+            using (SqlConnection conn = new SqlConnection(conString))
             using (SqlCommand datacheck = new SqlCommand(cmdcheck, conn))
             {
                 conn.Open();
@@ -148,7 +150,7 @@ namespace Job_Verification_Application
                 try
                 {
                     string cmdAdd = "INSERT into dbo.[USER](UserFName, UserLName) VALUES (@FirstName, @LastName)";
-                    using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
+                    using (SqlConnection conn = new SqlConnection(conString))
                     using (SqlCommand dataAdd = new SqlCommand(cmdAdd, conn))
                     {
                         conn.Open();

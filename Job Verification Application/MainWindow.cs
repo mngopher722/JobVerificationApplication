@@ -15,6 +15,8 @@ namespace Job_Verification_Application
 {
     public partial class MainWindow : Form
     {
+        //string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
+        string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
         public object jobid { get; private set; }
         public SqlCommand querybin { get; private set; }
 
@@ -62,15 +64,15 @@ namespace Job_Verification_Application
 
         protected void FillComboBox()
         {
-            string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
-            SqlConnection conn = new SqlConnection(conString);
+            Connection_Query con = Connection_Query.INSTANCE;
+            SqlConnection conn = con.con;
             DataSet user1 = new DataSet();
             DataSet user2 = new DataSet();
             DataSet jobnum = new DataSet();
             //DataSet binnum = new DataSet();
             try
             {
-                conn.Open();
+                con.OpenConnection();
                 SqlCommand cmdUser = new SqlCommand("select CONCAT(UserLName, ', ', UserFName)as UserLastFirst, UserID UserFName, UserLName from dbo.[USER] order by UserLastFirst", conn);
                 SqlCommand cmdJob = new SqlCommand("select CONCAT(JobID,' - ',ClientName) as JobClient, JobID from dbo.[JOB], CLIENT Where ClientID = FK_ClientID order by JobID", conn);
                 //SqlCommand cmdBin = new SqlCommand("select JobID_X_BinID, FK_BinID, FK_JobID from JOB_X_BIN WHERE FK_JobID = @jobid", conn);
@@ -100,29 +102,31 @@ namespace Job_Verification_Application
                 //mWBinComboBox.DataSource = binnum.Tables[0];
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //Exception Message
-                MessageBox.Show("Connection to the database has quit. Please reload Database");
+                MessageBox.Show("Connection to the database has quit. Please reload Database" + ex.StackTrace + ex.Message);
+               
             }
             finally
             {
-                conn.Close();
+                con.CloseConnection();
                 conn.Dispose();
             }
         }
         protected void FillBinComboBox()
         {
             //string querybins = "select JobID_X_BinID, FK_BinID, FK_JobID from JOB_X_BIN WHERE FK_JobID = @jobid";
-            string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
-            SqlConnection objConn = new SqlConnection(conString);
-            objConn.Open();
-            SqlDataAdapter binadapter = new SqlDataAdapter("select JobID_X_BinID, FK_BinID, FK_JobID from JOB_X_BIN WHERE FK_JobID = @jobid", objConn);
+            Connection_Query con = Connection_Query.INSTANCE;
+            SqlConnection conn = con.con;
+            con.OpenConnection();
+            SqlDataAdapter binadapter = new SqlDataAdapter("select JobID_X_BinID, FK_BinID, FK_JobID from JOB_X_BIN WHERE FK_JobID = @jobid", conn);
+            binadapter.SelectCommand.Parameters.AddWithValue("jobid", mWJobComboBox.SelectedIndex);
             DataSet dsBins = new DataSet("Bins");
             binadapter.FillSchema(dsBins, SchemaType.Source, "Bins");
             binadapter.Fill(dsBins, "Bins");
             binadapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-
+            con.CloseConnection();
         }
 
         private void configJobButton_Click(object sender, EventArgs e)

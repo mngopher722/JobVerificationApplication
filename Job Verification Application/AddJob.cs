@@ -13,6 +13,8 @@ namespace Job_Verification_Application
 {
     public partial class AddJob : Form
     {
+        //string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
+        string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
         public bool notDuplicateJob { get; private set; }
         public bool jwClientValidated { get; private set; }
         public bool jWJobDescValidated { get; private set; }
@@ -36,7 +38,7 @@ namespace Job_Verification_Application
         {
             notDuplicateJob = false;
             string cmdcheck = "select count (*) FROM JOB where JobID = @JobID";
-            using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
+            using (SqlConnection conn = new SqlConnection(conString))
             using (SqlCommand datacheck = new SqlCommand(cmdcheck, conn))
             {
                 conn.Open();
@@ -170,7 +172,7 @@ namespace Job_Verification_Application
         }
         protected void FillComboBox()
         {
-            string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
+            
             SqlConnection conn = new SqlConnection(conString);
             DataSet client = new DataSet();
             try

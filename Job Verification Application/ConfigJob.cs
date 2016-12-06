@@ -14,11 +14,11 @@ namespace Job_Verification_Application
 {
     public partial class ConfigJob : Form
     {
+        string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
         public bool validjob { get; private set; }
         public bool validbin { get; private set; }
         public int jobID { get; set; }
         public int binID { get; set; }
-        public bool validSelection { get; private set; }
 
         public ConfigJob()
         {
@@ -32,7 +32,7 @@ namespace Job_Verification_Application
 
         protected void FillComboBox()
         {
-            string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
+            //string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
             SqlConnection conn = new SqlConnection(conString);
             DataSet jobnum = new DataSet();
             DataSet binnum = new DataSet();
@@ -55,10 +55,10 @@ namespace Job_Verification_Application
                 cfgWBinNumComboBox.DataSource = binnum.Tables[0];
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //Exception Message
-                MessageBox.Show("Connection to the database has quit. Please reload Database");
+                MessageBox.Show("Connection to the database has quit. Please reload Database" + ex.Message +ex.StackTrace);
             }
             finally
             {
@@ -75,31 +75,28 @@ namespace Job_Verification_Application
         {
             //int jobID;
             //int binID;
-            validSelection = false;
             if(jobID != 0 && binID != 0)
             {
-                validSelection = true;
+                return true;
             }
             else
             {
-                validSelection = false;
+                return false;
             }
-            return validSelection;
         }
 
         private void cfgWSubmitButton_Click(object sender, EventArgs e)
         {
             StringCollection sc = new StringCollection();
             int insertingbin;
-            Validate(cfgWJobNumComboBox.SelectedIndex, cfgWBinNumComboBox.SelectedIndex);            
-            if (validSelection)
+            if (Validate(cfgWJobNumComboBox.SelectedIndex +1, cfgWBinNumComboBox.SelectedIndex +1))
             {
                 for (insertingbin = 1; insertingbin <= binID; insertingbin++ )
                 {    
                     try
                     {
                         string cmdAdd = "INSERT into JOB_X_BIN (FK_JobID, FK_BinID) VALUES (@FK_JobID, @FK_BinID)";
-                        using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"))
+                        using (SqlConnection conn = new SqlConnection(conString))
                         using (SqlCommand dataAdd = new SqlCommand(cmdAdd, conn))
                         {
                             conn.Open();
@@ -130,12 +127,12 @@ namespace Job_Verification_Application
 
         private void cfgWJobNumComboBox_Leave(object sender, EventArgs e)
         {
-            jobID = cfgWJobNumComboBox.SelectedIndex;
+            jobID = cfgWJobNumComboBox.SelectedIndex + 1;
         }
 
         private void cfgWBinNumComboBox_Leave(object sender, EventArgs e)
         {
-            binID = cfgWBinNumComboBox.SelectedIndex;
+            binID = cfgWBinNumComboBox.SelectedIndex + 1;
         }
     }
 }
