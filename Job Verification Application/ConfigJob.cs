@@ -128,7 +128,6 @@ namespace Job_Verification_Application
                         MessageBox.Show("Failed to Add Configuration to Database" +ex.StackTrace +ex.Message);
                         
                         return;
-                        this.Close();
                     }
                 }
             }

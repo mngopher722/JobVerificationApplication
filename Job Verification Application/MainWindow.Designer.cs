@@ -173,6 +173,7 @@
             this.mWBinComboBox.Size = new System.Drawing.Size(136, 21);
             this.mWBinComboBox.TabIndex = 1;
             this.mWBinComboBox.ValueMember = "FK_BinID";
+            this.mWBinComboBox.SelectionChangeCommitted += new System.EventHandler(this.mWBinComboBox_SelectionChangeCommitted);
             // 
             // bINBindingSource
             // 
@@ -195,6 +196,7 @@
             this.mWUser1ComboBox.Name = "mWUser1ComboBox";
             this.mWUser1ComboBox.Size = new System.Drawing.Size(121, 21);
             this.mWUser1ComboBox.TabIndex = 3;
+            this.mWUser1ComboBox.SelectionChangeCommitted += new System.EventHandler(this.mWUser1ComboBox_SelectionChangeCommitted);
             // 
             // uSERBindingSource
             // 
@@ -209,6 +211,7 @@
             this.mWUser2ComboBox.Name = "mWUser2ComboBox";
             this.mWUser2ComboBox.Size = new System.Drawing.Size(121, 21);
             this.mWUser2ComboBox.TabIndex = 4;
+            this.mWUser2ComboBox.SelectionChangeCommitted += new System.EventHandler(this.mWUser2ComboBox_SelectionChangeCommitted);
             // 
             // uSERTableAdapter
             // 

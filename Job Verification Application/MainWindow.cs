@@ -17,9 +17,17 @@ namespace Job_Verification_Application
     {
         string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster; Integrated Security = True";
         //string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
+
+        DataRow dr;
         public object jobid { get; private set; }
         public SqlCommand querybin { get; private set; }
         public int Jobid { get; private set; }
+        public object binid { get; private set; }
+        public int userOneID { get; private set; }
+        public int userTwoID { get; private set; }
+        public int userCount { get; private set; }
+        public int userID { get; private set; }
+        public int[] users { get; private set; }
 
         public MainWindow()
         {
@@ -70,38 +78,36 @@ namespace Job_Verification_Application
             DataSet user1 = new DataSet();
             DataSet user2 = new DataSet();
             DataSet jobnum = new DataSet();
-            //DataSet binnum = new DataSet();
+
             try
             {
                 con.OpenConnection();
                 SqlCommand cmdUser = new SqlCommand("select CONCAT(UserLName, ', ', UserFName)as UserLastFirst, UserID, UserFName, UserLName from dbo.[USER] order by UserLastFirst", conn);
                 SqlCommand cmdJob = new SqlCommand("select CONCAT(JobID,' - ',ClientName) as JobClient, JobID from dbo.[JOB], CLIENT Where ClientID = FK_ClientID order by JobID", conn);
-                //SqlCommand cmdBin = new SqlCommand("select JobID_X_BinID, FK_BinID, FK_JobID from JOB_X_BIN WHERE FK_JobID = @jobid", conn);
+
                 SqlDataAdapter ucb1 = new SqlDataAdapter();
                 SqlDataAdapter ucb2 = new SqlDataAdapter();
                 SqlDataAdapter job = new SqlDataAdapter();
-                //SqlDataAdapter bin = new SqlDataAdapter();
+
                 ucb1.SelectCommand = cmdUser;
                 ucb2.SelectCommand = cmdUser;
                 job.SelectCommand = cmdJob;
-                //bin.SelectCommand = cmdBin;
+
                 ucb1.Fill(user1);
                 ucb2.Fill(user2);
                 job.Fill(jobnum);
-                //bin.Fill(binnum);
+
                 mWUser1ComboBox.DisplayMember = "UserLastFirst";
                 mWUser1ComboBox.ValueMember = "UserID";
                 mWUser1ComboBox.DataSource = user1.Tables[0];
+
                 mWUser2ComboBox.DisplayMember = "UserLastFirst";
                 mWUser2ComboBox.ValueMember = "UserID";
                 mWUser2ComboBox.DataSource = user2.Tables[0];
+
                 mWJobComboBox.DisplayMember = "JobClient";
                 mWJobComboBox.ValueMember = "JobID";
                 mWJobComboBox.DataSource = jobnum.Tables[0];
-                //mWBinComboBox.DisplayMember = "FK_BinID";
-                //mWBinComboBox.ValueMember = "JobID_X_BinID";
-                //mWBinComboBox.DataSource = binnum.Tables[0];
-
             }
             catch (Exception ex)
             {
@@ -115,29 +121,26 @@ namespace Job_Verification_Application
                 conn.Dispose();
             }
         }
-        protected void FillBinComboBox( int jobnumber)
+        protected void FillBinComboBox(int jobnumber)
         {
-            //string querybins = "select JobID_X_BinID, FK_BinID, FK_JobID from JOB_X_BIN WHERE FK_JobID = @jobid";
             Connection_Query con = Connection_Query.INSTANCE;
             SqlConnection conn = con.con;
             DataSet binnum = new DataSet();
             try
             {
                 con.OpenConnection();
-                SqlCommand bins = new SqlCommand("select [dbo].[BIN].[Index] as BinNumber, BinID, FK_JobID from BIN WHERE FK_JobID = @Jobid", conn);
-                SqlParameter jobid = new SqlParameter("@Jobid", SqlDbType.Int);
-                Jobid = Convert.ToInt32(mWJobComboBox.SelectedValue);
-                SqlDataAdapter binnumbers = new SqlDataAdapter();
-                bins.CommandType = CommandType.Text;
-                SqlDataReader dr = bins.ExecuteReader();
-                while (dr.Read())
-                {
-                    binnumbers.SelectCommand = bins;
-                    binnumbers.Fill(binnum);
-                    mWBinComboBox.DisplayMember = "BinNumber";
-                    mWBinComboBox.ValueMember = "BinID";
-                    mWBinComboBox.DataSource = binnum.Tables[0];
-                }
+                SqlCommand bins = new SqlCommand("select [dbo].[BIN].[Index] as BinNumber, BinID, FK_JobID from BIN WHERE FK_JobID = @Jobid And Completed = 'False'", conn);
+                bins.Parameters.AddWithValue("Jobid", jobnumber);
+                SqlDataAdapter binnumbers = new SqlDataAdapter(bins);
+                DataTable dt = new DataTable();
+                binnumbers.Fill(dt);
+                con.CloseConnection();
+                dr = dt.NewRow();
+                dr.ItemArray = new object[] { 0, 0 };
+                dt.Rows.InsertAt(dr, 0);
+                mWBinComboBox.DataSource = dt;
+                mWBinComboBox.DisplayMember = "BinNumber";
+                mWBinComboBox.ValueMember = "BinID";
             }
             catch (Exception ex)
             {
@@ -164,41 +167,51 @@ namespace Job_Verification_Application
             ScanningWindow scanWindow = new ScanningWindow();
             if (Validate())
             {
-                try
+                if (userCount > 0)
                 {
-                    //List jobs = new List();
-                    string cmdquery = "SELECT JobID_X_BinID as 'Process Number', FK_JobID, FK_BinID FROM JOB_X_BIN WHERE FK_JobID = @JobID AND FK_BinID = @BinID";
-                    using (SqlConnection conn = new SqlConnection(conString))
-                    using (SqlCommand dataquery = new SqlCommand(cmdquery, conn))
-
+                    try
                     {
-                        conn.Open();
-                        //using (SqlDataReader reader = cmdquery.ExecuteReader())
-                        //{
-                        //    if (reader.HasRows)
-                        //    {
-                        //        while(reader.Read())
-                        //        {
-                        SqlParameter jobbinid = new SqlParameter("@jobbinid", SqlDbType.Int);
-                        SqlParameter jobid = new SqlParameter("@JobID", SqlDbType.Int);
-                        SqlParameter binid = new SqlParameter("@JobDesc", SqlDbType.TinyInt);
-                        jobid.Value = mWJobComboBox.SelectedText;
-                        binid.Value = mWBinComboBox.SelectedText;
-                        dataquery.Parameters.Add(jobid);
-                        dataquery.Parameters.Add(binid);
-                        dataquery.CommandType = CommandType.Text;
-                        dataquery.ExecuteScalar();
+                        //List jobs = new List();
+                        string binTableUpdate = "UPDATE BIN SET XpectedQuantity = @XQty WHERE BinID = @BinID";
+                        using (SqlConnection conn = new SqlConnection(conString))
+                        using (SqlCommand updateBinTable = new SqlCommand(binTableUpdate, conn))
+                        {
+                            conn.Open();
+                            SqlParameter xqty = new SqlParameter("@XQty", SqlDbType.SmallInt);
+                            SqlParameter binId = new SqlParameter("@BinID", SqlDbType.Int);
+                            xqty.Value = xqtyTextBox.Text;
+                            binId.Value = binid;
+                            updateBinTable.Parameters.Add(xqty);
+                            updateBinTable.Parameters.Add(binId);
+                            updateBinTable.CommandType = CommandType.Text;
+                            updateBinTable.ExecuteNonQuery();
 
-                        //        }
-                        //    }
-                        //}
+                            
+                            //TODO - Finish Createing 2 different record for same job by 2 different users
+                            string processTableUpdate = "INSERT into USER_X_BIN(FK_UserID, FK_BinID) VALUES(@UserID, @binid)";
+                            using (SqlCommand updateProcessTable = new SqlCommand(processTableUpdate, conn))
+                            {
+                                //foreach (var user in userCount)
+                                {
+                                    SqlParameter userid = new SqlParameter("@UserID", SqlDbType.TinyInt);
+                                    SqlParameter binid = new SqlParameter("@binid", SqlDbType.Int);
+                                    userid.Value = xqtyTextBox.Text;
+                                    binId.Value = binid;
+                                    updateBinTable.Parameters.Add(xqty);
+                                    updateBinTable.Parameters.Add(binId);
+                                    updateBinTable.CommandType = CommandType.Text;
+                                    updateBinTable.ExecuteNonQuery();
+                                }
+                            }
+                        }
                     }
+
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Failed to Start Processing");
+                    }
+                    this.Close();
                 }
-                catch (Exception)
-                {
-                    MessageBox.Show("Failed to Start Processing");
-                }
-                this.Close();
             }
             else
             {
@@ -207,34 +220,50 @@ namespace Job_Verification_Application
 
         }
 
-        private void mWJobComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        public void mWJobComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             jobid = mWJobComboBox.SelectedValue;
             int jobnumber = Convert.ToInt32(jobid);
             FillBinComboBox(jobnumber);
         }
-        //    static public int GetJobxBinID();
-        //        {
-        //            int JobBinID = 0;
-        //    string sql = "INSERT INTO Production.ProductCategory (Name) VALUES (@Name);
-        //            using (SqlConnection conn = new SqlConnection(@"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster"));
-        //            {
-        //                SqlCommand cmd = new SqlCommand(sql, conn);
-        //cmd.Parameters.Add("@Name", SqlDbType.VarChar);
-        //                cmd.Parameters["@name"].Value = newName;
-        //                try
-        //                {
-        //                    conn.Open();
-        //                    newProdID = (Int32)cmd.ExecuteScalar();
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //                    Console.WriteLine(ex.Message);
-        //                }
-        //            }
-        //            return (int)newProdID;
-        //        }
-        //    }
+
+        private void mWBinComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            binid = mWBinComboBox.SelectedValue;
+        }
+
+        private void mWUser1ComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            userOneID = mWUser1ComboBox.SelectedIndex;
+        }
+
+        private void mWUser2ComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            userTwoID = mWUser2ComboBox.SelectedIndex;
+        }
+
+        public void CountUsers()
+        {
+            userCount = 0;
+            if (userOneID != 0 && userTwoID != 0)
+            {
+                userCount = 2;
+            }
+            else if (userOneID != 0 && userTwoID == 0)
+            {
+                userID = mWUser1ComboBox.SelectedIndex;
+                userCount = 1;
+            }
+            else
+            {
+                userID = mWUser2ComboBox.SelectedIndex;
+                userCount = 1;
+            }
+
+            //TODO: Set up array to get the number of users to cycle through insert statement.
+            //int[] users = new int[userCount] users; 
+        }
+
         //public void scanWindow_Pass(int jxbID, int xqty)
         //{
         //    int xpectedQty;
