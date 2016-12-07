@@ -126,7 +126,8 @@ namespace Job_Verification_Application
                     catch (Exception ex)
                     {
                         MessageBox.Show("Failed to Add Configuration to Database" +ex.StackTrace +ex.Message);
-                        break;
+                        
+                        return;
                         this.Close();
                     }
                 }

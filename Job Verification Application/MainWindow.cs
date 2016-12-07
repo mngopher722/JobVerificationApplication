@@ -19,6 +19,7 @@ namespace Job_Verification_Application
         //string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification; User ID=Ryan; Integrated Security = True";
         public object jobid { get; private set; }
         public SqlCommand querybin { get; private set; }
+        public int Jobid { get; private set; }
 
         public MainWindow()
         {
@@ -119,31 +120,37 @@ namespace Job_Verification_Application
             //string querybins = "select JobID_X_BinID, FK_BinID, FK_JobID from JOB_X_BIN WHERE FK_JobID = @jobid";
             Connection_Query con = Connection_Query.INSTANCE;
             SqlConnection conn = con.con;
-            con.OpenConnection();
-            SqlDataAdapter binadapter = new SqlDataAdapter("select [dbo].[BIN].[Index] as BinNumber, BinID, FK_JobID from BIN WHERE FK_JobID = @jobid", conn);
-            using (SqlConnection conn = new SqlConnection(conString))
-            using (SqlCommand dataAdd = new SqlCommand(cmdAdd, conn))
+            DataSet binnum = new DataSet();
+            try
             {
-                jobid.Value = jobnumber;
-                binid.Value = insertingbin;
-
-
-                dataAdd.Parameters.Add(jobid);
-                dataAdd.Parameters.Add(binid);
-
-                dataAdd.CommandType = CommandType.Text;
-
-                dataAdd.ExecuteNonQuery();
-                this.Close();
+                con.OpenConnection();
+                SqlCommand bins = new SqlCommand("select [dbo].[BIN].[Index] as BinNumber, BinID, FK_JobID from BIN WHERE FK_JobID = @Jobid", conn);
+                SqlParameter jobid = new SqlParameter("@Jobid", SqlDbType.Int);
+                Jobid = Convert.ToInt32(mWJobComboBox.SelectedValue);
+                SqlDataAdapter binnumbers = new SqlDataAdapter();
+                bins.CommandType = CommandType.Text;
+                SqlDataReader dr = bins.ExecuteReader();
+                while (dr.Read())
+                {
+                    binnumbers.SelectCommand = bins;
+                    binnumbers.Fill(binnum);
+                    mWBinComboBox.DisplayMember = "BinNumber";
+                    mWBinComboBox.ValueMember = "BinID";
+                    mWBinComboBox.DataSource = binnum.Tables[0];
+                }
             }
+            catch (Exception ex)
+            {
+                //Exception Message
+                MessageBox.Show("Connection to the database has quit. Please reload Database" + ex.StackTrace + ex.Message);
 
-
-            //binadapter.SelectCommand.Parameters.AddWithValue("jobid", mWJobComboBox.SelectedIndex);
-            //DataSet dsBins = new DataSet("Bins");
-            //binadapter.FillSchema(dsBins, SchemaType.Source, "Bins");
-            //binadapter.Fill(dsBins, "Bins");
-            //binadapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-            con.CloseConnection();
+            }
+            finally
+            {
+                con.CloseConnection();
+                conn.Dispose();
+            }
+            
         }
 
         private void configJobButton_Click(object sender, EventArgs e)
