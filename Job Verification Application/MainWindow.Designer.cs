@@ -225,6 +225,7 @@
             this.xqtyTextBox.Size = new System.Drawing.Size(136, 20);
             this.xqtyTextBox.TabIndex = 2;
             this.xqtyTextBox.ValidatingType = typeof(int);
+            this.xqtyTextBox.Leave += new System.EventHandler(this.xqtyTextBox_Leave);
             // 
             // label1
             // 
