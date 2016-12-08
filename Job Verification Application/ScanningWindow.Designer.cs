@@ -42,6 +42,7 @@
             this.sWJobDataGrid.ReadOnly = true;
             this.sWJobDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.sWJobDataGrid.Size = new System.Drawing.Size(237, 289);
+            this.sWJobDataGrid.StandardTab = true;
             this.sWJobDataGrid.TabIndex = 10;
             this.sWJobDataGrid.TabStop = false;
             // 

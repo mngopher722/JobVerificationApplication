@@ -13,31 +13,40 @@ namespace Job_Verification_Application
 {
     public partial class ScanningWindow : Form
     {
+        
         //string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification";
         string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
+        private object binid;
+
+        public DataTable Sequence { get; private set; }
+
         public ScanningWindow()
         {
             InitializeComponent();
         }
 
+        public ScanningWindow(object binid)
+        {
+            this.binid = binid;
+        }
+
         private void ScanningWindow_Load(object sender, EventArgs e)
         {
-            
+            LoadDataGrid();
         }
-        protected void FillDataGrid()
+        public DataTable LoadDataGrid()
         {
-            
-            SqlConnection conn = new SqlConnection(conString);
-            DataTable jxb = new DataTable();
+            Connection_Query con = Connection_Query.INSTANCE;
+            SqlConnection conn = con.con;
             try
             {
                 conn.Open();
-                SqlCommand cmdjxb = new SqlCommand("select FK_JobID_X_BinID as Bin_Number, FK_SequenceID as Sequence_Number, ScanDateTime " +
-                    "from SEQUENCE_X_BIN, JOB_X_BIN WHERE FK_JobID_X_BinID  = JobID_X_BinID", conn);
-                SqlDataAdapter job = new SqlDataAdapter();
-                job.SelectCommand = cmdjxb;
-                job.Fill(jxb);
-
+                SqlCommand cmdload = new SqlCommand("select FK_JobID as JobNumber, Index as SequenceNumber, ScanDateTime " +
+                    "from SEQUENCE, BIN WHERE BinID = FK_BinID AND BinID = @BinID", conn);
+                SqlParameter BinId = new SqlParameter("@BinID", SqlDbType.Int);
+                BinId.Value = binid;
+                DataTable Sequence = new DataTable();
+                Sequence.Load(cmdload.ExecuteReader());    
             }
             catch (Exception)
             {
@@ -49,6 +58,7 @@ namespace Job_Verification_Application
                 conn.Close();
                 conn.Dispose();
             }
+            return Sequence;
         }
     }
 }

@@ -160,7 +160,7 @@ namespace Job_Verification_Application
         }
         private void startProcessButton_Click(object sender, EventArgs e)
         {
-            ScanningWindow scanWindow = new ScanningWindow();
+            ScanningWindow scanWindow = new ScanningWindow(binid);
             CountUsers();
             if (validBin && validQty && validUser)
             {
@@ -186,20 +186,20 @@ namespace Job_Verification_Application
                             updateBinTable.Parameters.Clear();
                             if (userCount == 2)
                             {
-                                string processTableUpdate = "INSERT into USER_X_BIN(FK_UserID, FK_BinID) VALUES(@User1ID, @binid), (@User1ID, @binid)";
+                                string processTableUpdate = "INSERT into USER_X_BIN(FK_UserID, FK_BinID) VALUES(@User1ID, @binid), (@User2ID, @binid)";
                                 using (SqlCommand updateProcessTable = new SqlCommand(processTableUpdate, conn))
                                 {
                                     SqlParameter User1id = new SqlParameter("@User1ID", SqlDbType.TinyInt);
-                                    SqlParameter User2id = new SqlParameter("@User1ID", SqlDbType.TinyInt);
+                                    SqlParameter User2id = new SqlParameter("@User2ID", SqlDbType.TinyInt);
                                     SqlParameter BinId = new SqlParameter("@binid", SqlDbType.Int);
                                     User1id.Value = userOneID;
                                     User2id.Value = userTwoID;
                                     BinId.Value = binid;
-                                    updateBinTable.Parameters.Add(User1id);
-                                    updateBinTable.Parameters.Add(User2id);
-                                    updateBinTable.Parameters.Add(BinId);
-                                    updateBinTable.CommandType = CommandType.Text;
-                                    updateBinTable.ExecuteNonQuery();
+                                    updateProcessTable.Parameters.Add(User1id);
+                                    updateProcessTable.Parameters.Add(User2id);
+                                    updateProcessTable.Parameters.Add(BinId);
+                                    updateProcessTable.CommandType = CommandType.Text;
+                                    updateProcessTable.ExecuteNonQuery();
                                 }
                             }
                             else
@@ -211,10 +211,10 @@ namespace Job_Verification_Application
                                     SqlParameter binid = new SqlParameter("@binid", SqlDbType.Int);
                                     userid.Value = userID;
                                     binId.Value = binid;
-                                    updateBinTable.Parameters.Add(userid);
-                                    updateBinTable.Parameters.Add(binId);
-                                    updateBinTable.CommandType = CommandType.Text;
-                                    updateBinTable.ExecuteNonQuery();
+                                    updateProcessTable.Parameters.Add(userid);
+                                    updateProcessTable.Parameters.Add(binId);
+                                    updateProcessTable.CommandType = CommandType.Text;
+                                    updateProcessTable.ExecuteNonQuery();
                                 }
                             }
                         }
@@ -224,7 +224,7 @@ namespace Job_Verification_Application
                     {
                         MessageBox.Show("Failed to Start Processing" +ex.Message + ex.StackTrace);
                     }
-                    this.Close();
+                    this.Hide();
                 }
             }
             else
@@ -256,12 +256,14 @@ namespace Job_Verification_Application
 
         private void mWUser1ComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            userOneID = mWUser1ComboBox.SelectedIndex;
+            int u1 = Convert.ToInt32(mWUser1ComboBox.SelectedValue);
+            userOneID = u1;
         }
 
         private void mWUser2ComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            userTwoID = mWUser2ComboBox.SelectedIndex;
+            int u2 = Convert.ToInt32(mWUser2ComboBox.SelectedValue);
+            userTwoID = u2;
         }
 
         public bool CountUsers()
@@ -303,6 +305,14 @@ namespace Job_Verification_Application
             else
             {
                 validQty = false;
+            }
+        }
+
+        public int ValuefromMain
+        {
+            set
+            {
+                this.jobid = value;
             }
         }
     }
