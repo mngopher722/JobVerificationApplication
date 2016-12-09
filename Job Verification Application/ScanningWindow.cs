@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Job_Verification_Application
 {
     public partial class ScanningWindow : Form
@@ -23,6 +24,7 @@ namespace Job_Verification_Application
         public ScanningWindow()
         {
             InitializeComponent();
+            LoadDataGrid();
         }
 
         public ScanningWindow(object binid)
@@ -33,11 +35,11 @@ namespace Job_Verification_Application
         private void ScanningWindow_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'jobVerificationDataSet.USER_X_BIN' table. You can move, or remove it, as needed.
-            this.uSER_X_BINTableAdapter.Fill(this.jobVerificationDataSet.USER_X_BIN);
-            LoadDataGrid();
+            //this.uSER_X_BINTableAdapter.Fill(this.jobVerificationDataSet.USER_X_BIN);
+            
         }
-        public DataTable LoadDataGrid()
-        {
+        private void LoadDataGrid()
+        { 
             Connection_Query con = Connection_Query.INSTANCE;
             SqlConnection conn = con.con;
             try
@@ -49,15 +51,16 @@ namespace Job_Verification_Application
                 SqlDataAdapter datagridview = new SqlDataAdapter(cmdload);
                 BinId.Value = binid;
                 DataTable Sequence = new DataTable();
-                using(SqlDataReader sqldr = cmdload.ExecuteReader())
+                using (SqlDataReader sqldr = cmdload.ExecuteReader())
                 {
-                    Sequence.Load(sqlDataReader);
-                    sqlDataReader.Close();
+                    Sequence.Load(sqldr);
+                    sqldr.Close();
                 }
                 DataGridView dataGridView1 = new DataGridView();
                 dataGridView1.DataSource = datagridview.FillSchema(Sequence, SchemaType.Source);
                 BindingSource bs = new BindingSource();
-                bs.DataSource = 
+                datagridview.Fill(Sequence);
+                sWJobDataGrid.DataSource = Sequence;
                 //Sequence.Load(cmdload.ExecuteReader());    
             }
             catch (Exception)
@@ -70,7 +73,6 @@ namespace Job_Verification_Application
                 conn.Close();
                 conn.Dispose();
             }
-            return Sequence;
         }
     }
 }
