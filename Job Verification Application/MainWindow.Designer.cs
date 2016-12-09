@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.configJobButton = new System.Windows.Forms.Button();
             this.addClientButton = new System.Windows.Forms.Button();
@@ -37,19 +36,9 @@
             this.reportsButton = new System.Windows.Forms.Button();
             this.startProcessButton = new System.Windows.Forms.Button();
             this.mWJobComboBox = new System.Windows.Forms.ComboBox();
-            this.jOBXBINBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.jobVerificationDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.jobVerificationDataSet = new Job_Verification_Application.JobVerificationDataSet();
-            this.jOBBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.jOBBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.mWBinComboBox = new System.Windows.Forms.ComboBox();
-            this.bINBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bINTableAdapter = new Job_Verification_Application.JobVerificationDataSetTableAdapters.BINTableAdapter();
-            this.jOBTableAdapter = new Job_Verification_Application.JobVerificationDataSetTableAdapters.JOBTableAdapter();
             this.mWUser1ComboBox = new System.Windows.Forms.ComboBox();
-            this.uSERBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mWUser2ComboBox = new System.Windows.Forms.ComboBox();
-            this.uSERTableAdapter = new Job_Verification_Application.JobVerificationDataSetTableAdapters.USERTableAdapter();
             this.xqtyTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,14 +46,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.jOB_X_BINTableAdapter = new Job_Verification_Application.JobVerificationDataSetTableAdapters.JOB_X_BINTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.jOBXBINBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jobVerificationDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jobVerificationDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jOBBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jOBBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bINBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uSERBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,7 +110,6 @@
             // 
             // mWJobComboBox
             // 
-            this.mWJobComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.jOBXBINBindingSource, "JobID_X_BinID", true));
             this.mWJobComboBox.FormattingEnabled = true;
             this.mWJobComboBox.Location = new System.Drawing.Point(108, 108);
             this.mWJobComboBox.Name = "mWJobComboBox";
@@ -137,36 +117,8 @@
             this.mWJobComboBox.TabIndex = 0;
             this.mWJobComboBox.SelectionChangeCommitted += new System.EventHandler(this.mWJobComboBox_SelectionChangeCommitted);
             // 
-            // jOBXBINBindingSource
-            // 
-            this.jOBXBINBindingSource.DataMember = "JOB_X_BIN";
-            this.jOBXBINBindingSource.DataSource = this.jobVerificationDataSetBindingSource;
-            // 
-            // jobVerificationDataSetBindingSource
-            // 
-            this.jobVerificationDataSetBindingSource.DataSource = this.jobVerificationDataSet;
-            this.jobVerificationDataSetBindingSource.Position = 0;
-            // 
-            // jobVerificationDataSet
-            // 
-            this.jobVerificationDataSet.DataSetName = "JobVerificationDataSet";
-            this.jobVerificationDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // jOBBindingSource
-            // 
-            this.jOBBindingSource.DataMember = "JOB";
-            this.jOBBindingSource.DataSource = this.jobVerificationDataSetBindingSource;
-            // 
-            // jOBBindingSource1
-            // 
-            this.jOBBindingSource1.DataMember = "JOB";
-            this.jOBBindingSource1.DataSource = this.jobVerificationDataSetBindingSource;
-            // 
             // mWBinComboBox
             // 
-            this.mWBinComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bINBindingSource, "BinID", true));
-            this.mWBinComboBox.DataSource = this.jOBXBINBindingSource;
-            this.mWBinComboBox.DisplayMember = "FK_BinID";
             this.mWBinComboBox.FormattingEnabled = true;
             this.mWBinComboBox.Location = new System.Drawing.Point(108, 146);
             this.mWBinComboBox.Name = "mWBinComboBox";
@@ -175,22 +127,8 @@
             this.mWBinComboBox.ValueMember = "FK_BinID";
             this.mWBinComboBox.SelectionChangeCommitted += new System.EventHandler(this.mWBinComboBox_SelectionChangeCommitted);
             // 
-            // bINBindingSource
-            // 
-            this.bINBindingSource.DataMember = "BIN";
-            this.bINBindingSource.DataSource = this.jobVerificationDataSetBindingSource;
-            // 
-            // bINTableAdapter
-            // 
-            this.bINTableAdapter.ClearBeforeFill = true;
-            // 
-            // jOBTableAdapter
-            // 
-            this.jOBTableAdapter.ClearBeforeFill = true;
-            // 
             // mWUser1ComboBox
             // 
-            this.mWUser1ComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.uSERBindingSource, "UserID", true));
             this.mWUser1ComboBox.FormattingEnabled = true;
             this.mWUser1ComboBox.Location = new System.Drawing.Point(340, 108);
             this.mWUser1ComboBox.Name = "mWUser1ComboBox";
@@ -198,24 +136,14 @@
             this.mWUser1ComboBox.TabIndex = 3;
             this.mWUser1ComboBox.SelectionChangeCommitted += new System.EventHandler(this.mWUser1ComboBox_SelectionChangeCommitted);
             // 
-            // uSERBindingSource
-            // 
-            this.uSERBindingSource.DataMember = "USER";
-            this.uSERBindingSource.DataSource = this.jobVerificationDataSetBindingSource;
-            // 
             // mWUser2ComboBox
             // 
-            this.mWUser2ComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.uSERBindingSource, "UserID", true));
             this.mWUser2ComboBox.FormattingEnabled = true;
             this.mWUser2ComboBox.Location = new System.Drawing.Point(340, 146);
             this.mWUser2ComboBox.Name = "mWUser2ComboBox";
             this.mWUser2ComboBox.Size = new System.Drawing.Size(121, 21);
             this.mWUser2ComboBox.TabIndex = 4;
             this.mWUser2ComboBox.SelectionChangeCommitted += new System.EventHandler(this.mWUser2ComboBox_SelectionChangeCommitted);
-            // 
-            // uSERTableAdapter
-            // 
-            this.uSERTableAdapter.ClearBeforeFill = true;
             // 
             // xqtyTextBox
             // 
@@ -282,10 +210,6 @@
             this.pictureBox1.TabIndex = 16;
             this.pictureBox1.TabStop = false;
             // 
-            // jOB_X_BINTableAdapter
-            // 
-            this.jOB_X_BINTableAdapter.ClearBeforeFill = true;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -314,13 +238,6 @@
             this.Text = "MainWindow";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
             this.Load += new System.EventHandler(this.MainWindow_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.jOBXBINBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jobVerificationDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jobVerificationDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jOBBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jOBBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bINBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uSERBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -337,17 +254,8 @@
         private System.Windows.Forms.Button startProcessButton;
         private System.Windows.Forms.ComboBox mWJobComboBox;
         private System.Windows.Forms.ComboBox mWBinComboBox;
-        private System.Windows.Forms.BindingSource jobVerificationDataSetBindingSource;
-        private JobVerificationDataSet jobVerificationDataSet;
-        private System.Windows.Forms.BindingSource bINBindingSource;
-        private JobVerificationDataSetTableAdapters.BINTableAdapter bINTableAdapter;
-        private System.Windows.Forms.BindingSource jOBBindingSource;
-        private JobVerificationDataSetTableAdapters.JOBTableAdapter jOBTableAdapter;
-        private System.Windows.Forms.BindingSource jOBBindingSource1;
         private System.Windows.Forms.ComboBox mWUser1ComboBox;
         private System.Windows.Forms.ComboBox mWUser2ComboBox;
-        private System.Windows.Forms.BindingSource uSERBindingSource;
-        private JobVerificationDataSetTableAdapters.USERTableAdapter uSERTableAdapter;
         private System.Windows.Forms.MaskedTextBox xqtyTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -355,7 +263,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.BindingSource jOBXBINBindingSource;
-        private JobVerificationDataSetTableAdapters.JOB_X_BINTableAdapter jOB_X_BINTableAdapter;
+        //private JobVerificationDataSetTableAdapters.JOB_X_BINTableAdapter jOB_X_BINTableAdapter;
     }
 }

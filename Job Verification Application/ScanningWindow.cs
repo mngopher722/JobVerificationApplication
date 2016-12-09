@@ -34,10 +34,11 @@ namespace Job_Verification_Application
 
         private void ScanningWindow_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'jobVerificationDataSet.USER_X_BIN' table. You can move, or remove it, as needed.
-            //this.uSER_X_BINTableAdapter.Fill(this.jobVerificationDataSet.USER_X_BIN);
-            
+            // TODO: This line of code loads data into the 'jobVerificationDataSet.SEQUENCE' table. You can move, or remove it, as needed.
+            this.sEQUENCETableAdapter.Fill(this.jobVerificationDataSet.SEQUENCE);        
+
         }
+        [STAThread]
         private void LoadDataGrid()
         { 
             Connection_Query con = Connection_Query.INSTANCE;
@@ -61,6 +62,7 @@ namespace Job_Verification_Application
                 BindingSource bs = new BindingSource();
                 datagridview.Fill(Sequence);
                 sWJobDataGrid.DataSource = Sequence;
+                //sWJobDataGrid.DataMember = Sequence.Table[0];
                 //Sequence.Load(cmdload.ExecuteReader());    
             }
             catch (Exception)

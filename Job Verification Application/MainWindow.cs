@@ -287,6 +287,12 @@ namespace Job_Verification_Application
                 userCount = 1;
                 validUser = true;
             }
+            else if (userOneID == userTwoID)
+            {
+                userID = mWUser1ComboBox.SelectedIndex;
+                userCount = 1;
+                validUser = true;
+            }
             else
             {
                 validUser = false;

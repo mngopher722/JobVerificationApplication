@@ -30,31 +30,19 @@ namespace Job_Verification_Application {
         
         private JOBDataTable tableJOB;
         
-        private JOB_X_BINDataTable tableJOB_X_BIN;
-        
-        private JOB_X_USERDataTable tableJOB_X_USER;
-        
         private SEQUENCEDataTable tableSEQUENCE;
-        
-        private SEQUENCE_X_BINDataTable tableSEQUENCE_X_BIN;
         
         private USERDataTable tableUSER;
         
         private USER_X_BINDataTable tableUSER_X_BIN;
         
+        private JOB_X_USERDataTable tableJOB_X_USER;
+        
+        private global::System.Data.DataRelation relationFK_BIN_JOB;
+        
         private global::System.Data.DataRelation relationFK_JOB_CLIENT;
         
-        private global::System.Data.DataRelation relationFK_JOB_X_BIN_BIN;
-        
-        private global::System.Data.DataRelation relationFK_JOB_X_BIN_JOB;
-        
-        private global::System.Data.DataRelation relationFK_JOB_X_USER_JOB;
-        
-        private global::System.Data.DataRelation relationFK_JOB_X_USER_USER;
-        
-        private global::System.Data.DataRelation relationFK_SEQUENCE_X_BIN_JOB_X_BIN;
-        
-        private global::System.Data.DataRelation relationFK_SEQUENCE_X_BIN_SEQUENCE;
+        private global::System.Data.DataRelation relationFK_SEQUENCE_BIN;
         
         private global::System.Data.DataRelation relationFK_USER_X_BIN_BIN;
         
@@ -97,23 +85,17 @@ namespace Job_Verification_Application {
                 if ((ds.Tables["JOB"] != null)) {
                     base.Tables.Add(new JOBDataTable(ds.Tables["JOB"]));
                 }
-                if ((ds.Tables["JOB_X_BIN"] != null)) {
-                    base.Tables.Add(new JOB_X_BINDataTable(ds.Tables["JOB_X_BIN"]));
-                }
-                if ((ds.Tables["JOB_X_USER"] != null)) {
-                    base.Tables.Add(new JOB_X_USERDataTable(ds.Tables["JOB_X_USER"]));
-                }
                 if ((ds.Tables["SEQUENCE"] != null)) {
                     base.Tables.Add(new SEQUENCEDataTable(ds.Tables["SEQUENCE"]));
-                }
-                if ((ds.Tables["SEQUENCE_X_BIN"] != null)) {
-                    base.Tables.Add(new SEQUENCE_X_BINDataTable(ds.Tables["SEQUENCE_X_BIN"]));
                 }
                 if ((ds.Tables["USER"] != null)) {
                     base.Tables.Add(new USERDataTable(ds.Tables["USER"]));
                 }
                 if ((ds.Tables["USER_X_BIN"] != null)) {
                     base.Tables.Add(new USER_X_BINDataTable(ds.Tables["USER_X_BIN"]));
+                }
+                if ((ds.Tables["JOB_X_USER"] != null)) {
+                    base.Tables.Add(new JOB_X_USERDataTable(ds.Tables["JOB_X_USER"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -167,39 +149,9 @@ namespace Job_Verification_Application {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public JOB_X_BINDataTable JOB_X_BIN {
-            get {
-                return this.tableJOB_X_BIN;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public JOB_X_USERDataTable JOB_X_USER {
-            get {
-                return this.tableJOB_X_USER;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public SEQUENCEDataTable SEQUENCE {
             get {
                 return this.tableSEQUENCE;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SEQUENCE_X_BINDataTable SEQUENCE_X_BIN {
-            get {
-                return this.tableSEQUENCE_X_BIN;
             }
         }
         
@@ -220,6 +172,16 @@ namespace Job_Verification_Application {
         public USER_X_BINDataTable USER_X_BIN {
             get {
                 return this.tableUSER_X_BIN;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public JOB_X_USERDataTable JOB_X_USER {
+            get {
+                return this.tableJOB_X_USER;
             }
         }
         
@@ -299,23 +261,17 @@ namespace Job_Verification_Application {
                 if ((ds.Tables["JOB"] != null)) {
                     base.Tables.Add(new JOBDataTable(ds.Tables["JOB"]));
                 }
-                if ((ds.Tables["JOB_X_BIN"] != null)) {
-                    base.Tables.Add(new JOB_X_BINDataTable(ds.Tables["JOB_X_BIN"]));
-                }
-                if ((ds.Tables["JOB_X_USER"] != null)) {
-                    base.Tables.Add(new JOB_X_USERDataTable(ds.Tables["JOB_X_USER"]));
-                }
                 if ((ds.Tables["SEQUENCE"] != null)) {
                     base.Tables.Add(new SEQUENCEDataTable(ds.Tables["SEQUENCE"]));
-                }
-                if ((ds.Tables["SEQUENCE_X_BIN"] != null)) {
-                    base.Tables.Add(new SEQUENCE_X_BINDataTable(ds.Tables["SEQUENCE_X_BIN"]));
                 }
                 if ((ds.Tables["USER"] != null)) {
                     base.Tables.Add(new USERDataTable(ds.Tables["USER"]));
                 }
                 if ((ds.Tables["USER_X_BIN"] != null)) {
                     base.Tables.Add(new USER_X_BINDataTable(ds.Tables["USER_X_BIN"]));
+                }
+                if ((ds.Tables["JOB_X_USER"] != null)) {
+                    base.Tables.Add(new JOB_X_USERDataTable(ds.Tables["JOB_X_USER"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -368,28 +324,10 @@ namespace Job_Verification_Application {
                     this.tableJOB.InitVars();
                 }
             }
-            this.tableJOB_X_BIN = ((JOB_X_BINDataTable)(base.Tables["JOB_X_BIN"]));
-            if ((initTable == true)) {
-                if ((this.tableJOB_X_BIN != null)) {
-                    this.tableJOB_X_BIN.InitVars();
-                }
-            }
-            this.tableJOB_X_USER = ((JOB_X_USERDataTable)(base.Tables["JOB_X_USER"]));
-            if ((initTable == true)) {
-                if ((this.tableJOB_X_USER != null)) {
-                    this.tableJOB_X_USER.InitVars();
-                }
-            }
             this.tableSEQUENCE = ((SEQUENCEDataTable)(base.Tables["SEQUENCE"]));
             if ((initTable == true)) {
                 if ((this.tableSEQUENCE != null)) {
                     this.tableSEQUENCE.InitVars();
-                }
-            }
-            this.tableSEQUENCE_X_BIN = ((SEQUENCE_X_BINDataTable)(base.Tables["SEQUENCE_X_BIN"]));
-            if ((initTable == true)) {
-                if ((this.tableSEQUENCE_X_BIN != null)) {
-                    this.tableSEQUENCE_X_BIN.InitVars();
                 }
             }
             this.tableUSER = ((USERDataTable)(base.Tables["USER"]));
@@ -404,13 +342,15 @@ namespace Job_Verification_Application {
                     this.tableUSER_X_BIN.InitVars();
                 }
             }
+            this.tableJOB_X_USER = ((JOB_X_USERDataTable)(base.Tables["JOB_X_USER"]));
+            if ((initTable == true)) {
+                if ((this.tableJOB_X_USER != null)) {
+                    this.tableJOB_X_USER.InitVars();
+                }
+            }
+            this.relationFK_BIN_JOB = this.Relations["FK_BIN_JOB"];
             this.relationFK_JOB_CLIENT = this.Relations["FK_JOB_CLIENT"];
-            this.relationFK_JOB_X_BIN_BIN = this.Relations["FK_JOB_X_BIN_BIN"];
-            this.relationFK_JOB_X_BIN_JOB = this.Relations["FK_JOB_X_BIN_JOB"];
-            this.relationFK_JOB_X_USER_JOB = this.Relations["FK_JOB_X_USER_JOB"];
-            this.relationFK_JOB_X_USER_USER = this.Relations["FK_JOB_X_USER_USER"];
-            this.relationFK_SEQUENCE_X_BIN_JOB_X_BIN = this.Relations["FK_SEQUENCE_X_BIN_JOB_X_BIN"];
-            this.relationFK_SEQUENCE_X_BIN_SEQUENCE = this.Relations["FK_SEQUENCE_X_BIN_SEQUENCE"];
+            this.relationFK_SEQUENCE_BIN = this.Relations["FK_SEQUENCE_BIN"];
             this.relationFK_USER_X_BIN_BIN = this.Relations["FK_USER_X_BIN_BIN"];
             this.relationFK_USER_X_BIN_USER = this.Relations["FK_USER_X_BIN_USER"];
         }
@@ -429,46 +369,26 @@ namespace Job_Verification_Application {
             base.Tables.Add(this.tableCLIENT);
             this.tableJOB = new JOBDataTable();
             base.Tables.Add(this.tableJOB);
-            this.tableJOB_X_BIN = new JOB_X_BINDataTable();
-            base.Tables.Add(this.tableJOB_X_BIN);
-            this.tableJOB_X_USER = new JOB_X_USERDataTable();
-            base.Tables.Add(this.tableJOB_X_USER);
             this.tableSEQUENCE = new SEQUENCEDataTable();
             base.Tables.Add(this.tableSEQUENCE);
-            this.tableSEQUENCE_X_BIN = new SEQUENCE_X_BINDataTable();
-            base.Tables.Add(this.tableSEQUENCE_X_BIN);
             this.tableUSER = new USERDataTable();
             base.Tables.Add(this.tableUSER);
             this.tableUSER_X_BIN = new USER_X_BINDataTable();
             base.Tables.Add(this.tableUSER_X_BIN);
+            this.tableJOB_X_USER = new JOB_X_USERDataTable();
+            base.Tables.Add(this.tableJOB_X_USER);
+            this.relationFK_BIN_JOB = new global::System.Data.DataRelation("FK_BIN_JOB", new global::System.Data.DataColumn[] {
+                        this.tableJOB.JobIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBIN.FK_JobIDColumn}, false);
+            this.Relations.Add(this.relationFK_BIN_JOB);
             this.relationFK_JOB_CLIENT = new global::System.Data.DataRelation("FK_JOB_CLIENT", new global::System.Data.DataColumn[] {
                         this.tableCLIENT.ClientIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableJOB.FK_ClientIDColumn}, false);
             this.Relations.Add(this.relationFK_JOB_CLIENT);
-            this.relationFK_JOB_X_BIN_BIN = new global::System.Data.DataRelation("FK_JOB_X_BIN_BIN", new global::System.Data.DataColumn[] {
+            this.relationFK_SEQUENCE_BIN = new global::System.Data.DataRelation("FK_SEQUENCE_BIN", new global::System.Data.DataColumn[] {
                         this.tableBIN.BinIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableJOB_X_BIN.FK_BinIDColumn}, false);
-            this.Relations.Add(this.relationFK_JOB_X_BIN_BIN);
-            this.relationFK_JOB_X_BIN_JOB = new global::System.Data.DataRelation("FK_JOB_X_BIN_JOB", new global::System.Data.DataColumn[] {
-                        this.tableJOB.JobIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableJOB_X_BIN.FK_JobIDColumn}, false);
-            this.Relations.Add(this.relationFK_JOB_X_BIN_JOB);
-            this.relationFK_JOB_X_USER_JOB = new global::System.Data.DataRelation("FK_JOB_X_USER_JOB", new global::System.Data.DataColumn[] {
-                        this.tableJOB.JobIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableJOB_X_USER.FK_JobIDColumn}, false);
-            this.Relations.Add(this.relationFK_JOB_X_USER_JOB);
-            this.relationFK_JOB_X_USER_USER = new global::System.Data.DataRelation("FK_JOB_X_USER_USER", new global::System.Data.DataColumn[] {
-                        this.tableUSER.UserIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableJOB_X_USER.FK_UserIDColumn}, false);
-            this.Relations.Add(this.relationFK_JOB_X_USER_USER);
-            this.relationFK_SEQUENCE_X_BIN_JOB_X_BIN = new global::System.Data.DataRelation("FK_SEQUENCE_X_BIN_JOB_X_BIN", new global::System.Data.DataColumn[] {
-                        this.tableJOB_X_BIN.JobID_X_BinIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableSEQUENCE_X_BIN.FK_JobID_X_BinIDColumn}, false);
-            this.Relations.Add(this.relationFK_SEQUENCE_X_BIN_JOB_X_BIN);
-            this.relationFK_SEQUENCE_X_BIN_SEQUENCE = new global::System.Data.DataRelation("FK_SEQUENCE_X_BIN_SEQUENCE", new global::System.Data.DataColumn[] {
-                        this.tableSEQUENCE.SequenceIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableSEQUENCE_X_BIN.FK_SequenceIDColumn}, false);
-            this.Relations.Add(this.relationFK_SEQUENCE_X_BIN_SEQUENCE);
+                        this.tableSEQUENCE.FK_BinIDColumn}, false);
+            this.Relations.Add(this.relationFK_SEQUENCE_BIN);
             this.relationFK_USER_X_BIN_BIN = new global::System.Data.DataRelation("FK_USER_X_BIN_BIN", new global::System.Data.DataColumn[] {
                         this.tableBIN.BinIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableUSER_X_BIN.FK_BinIDColumn}, false);
@@ -499,25 +419,7 @@ namespace Job_Verification_Application {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeJOB_X_BIN() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeJOB_X_USER() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeSEQUENCE() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeSEQUENCE_X_BIN() {
             return false;
         }
         
@@ -530,6 +432,12 @@ namespace Job_Verification_Application {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeUSER_X_BIN() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeJOB_X_USER() {
             return false;
         }
         
@@ -598,22 +506,16 @@ namespace Job_Verification_Application {
         public delegate void JOBRowChangeEventHandler(object sender, JOBRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void JOB_X_BINRowChangeEventHandler(object sender, JOB_X_BINRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void JOB_X_USERRowChangeEventHandler(object sender, JOB_X_USERRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void SEQUENCERowChangeEventHandler(object sender, SEQUENCERowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void SEQUENCE_X_BINRowChangeEventHandler(object sender, SEQUENCE_X_BINRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void USERRowChangeEventHandler(object sender, USERRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void USER_X_BINRowChangeEventHandler(object sender, USER_X_BINRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void JOB_X_USERRowChangeEventHandler(object sender, JOB_X_USERRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -623,6 +525,14 @@ namespace Job_Verification_Application {
         public partial class BINDataTable : global::System.Data.TypedTableBase<BINRow> {
             
             private global::System.Data.DataColumn columnBinID;
+            
+            private global::System.Data.DataColumn columnFK_JobID;
+            
+            private global::System.Data.DataColumn columnIndex;
+            
+            private global::System.Data.DataColumn columnXpectedQuantity;
+            
+            private global::System.Data.DataColumn columnCompleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -667,6 +577,38 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FK_JobIDColumn {
+                get {
+                    return this.columnFK_JobID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IndexColumn {
+                get {
+                    return this.columnIndex;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn XpectedQuantityColumn {
+                get {
+                    return this.columnXpectedQuantity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CompletedColumn {
+                get {
+                    return this.columnCompleted;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -702,10 +644,17 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BINRow AddBINRow(byte BinID) {
+            public BINRow AddBINRow(JOBRow parentJOBRowByFK_BIN_JOB, byte Index, short XpectedQuantity, bool Completed) {
                 BINRow rowBINRow = ((BINRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        BinID};
+                        null,
+                        null,
+                        Index,
+                        XpectedQuantity,
+                        Completed};
+                if ((parentJOBRowByFK_BIN_JOB != null)) {
+                    columnValuesArray[1] = parentJOBRowByFK_BIN_JOB[0];
+                }
                 rowBINRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBINRow);
                 return rowBINRow;
@@ -713,7 +662,7 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BINRow FindByBinID(byte BinID) {
+            public BINRow FindByBinID(int BinID) {
                 return ((BINRow)(this.Rows.Find(new object[] {
                             BinID})));
             }
@@ -736,17 +685,36 @@ namespace Job_Verification_Application {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnBinID = base.Columns["BinID"];
+                this.columnFK_JobID = base.Columns["FK_JobID"];
+                this.columnIndex = base.Columns["Index"];
+                this.columnXpectedQuantity = base.Columns["XpectedQuantity"];
+                this.columnCompleted = base.Columns["Completed"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnBinID = new global::System.Data.DataColumn("BinID", typeof(byte), null, global::System.Data.MappingType.Element);
+                this.columnBinID = new global::System.Data.DataColumn("BinID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBinID);
+                this.columnFK_JobID = new global::System.Data.DataColumn("FK_JobID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFK_JobID);
+                this.columnIndex = new global::System.Data.DataColumn("Index", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIndex);
+                this.columnXpectedQuantity = new global::System.Data.DataColumn("XpectedQuantity", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnXpectedQuantity);
+                this.columnCompleted = new global::System.Data.DataColumn("Completed", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCompleted);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnBinID}, true));
+                this.columnBinID.AutoIncrement = true;
+                this.columnBinID.AutoIncrementSeed = -1;
+                this.columnBinID.AutoIncrementStep = -1;
                 this.columnBinID.AllowDBNull = false;
+                this.columnBinID.ReadOnly = true;
                 this.columnBinID.Unique = true;
+                this.columnFK_JobID.AllowDBNull = false;
+                this.columnIndex.AllowDBNull = false;
+                this.columnCompleted.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -970,10 +938,10 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CLIENTRow AddCLIENTRow(int ClientID, string ClientName) {
+            public CLIENTRow AddCLIENTRow(string ClientName) {
                 CLIENTRow rowCLIENTRow = ((CLIENTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ClientID,
+                        null,
                         ClientName};
                 rowCLIENTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCLIENTRow);
@@ -1017,7 +985,11 @@ namespace Job_Verification_Application {
                 base.Columns.Add(this.columnClientName);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnClientID}, true));
+                this.columnClientID.AutoIncrement = true;
+                this.columnClientID.AutoIncrementSeed = -1;
+                this.columnClientID.AutoIncrementStep = -1;
                 this.columnClientID.AllowDBNull = false;
+                this.columnClientID.ReadOnly = true;
                 this.columnClientID.Unique = true;
                 this.columnClientName.AllowDBNull = false;
                 this.columnClientName.MaxLength = 50;
@@ -1311,6 +1283,7 @@ namespace Job_Verification_Application {
                 this.columnJobID.AllowDBNull = false;
                 this.columnJobID.Unique = true;
                 this.columnJobDesc.MaxLength = 50;
+                this.columnFK_ClientID.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1442,591 +1415,15 @@ namespace Job_Verification_Application {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class JOB_X_BINDataTable : global::System.Data.TypedTableBase<JOB_X_BINRow> {
-            
-            private global::System.Data.DataColumn columnJobID_X_BinID;
-            
-            private global::System.Data.DataColumn columnFK_JobID;
+        public partial class SEQUENCEDataTable : global::System.Data.TypedTableBase<SEQUENCERow> {
             
             private global::System.Data.DataColumn columnFK_BinID;
             
-            private global::System.Data.DataColumn columnXpectedQuantity;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_BINDataTable() {
-                this.TableName = "JOB_X_BIN";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal JOB_X_BINDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected JOB_X_BINDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn JobID_X_BinIDColumn {
-                get {
-                    return this.columnJobID_X_BinID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FK_JobIDColumn {
-                get {
-                    return this.columnFK_JobID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FK_BinIDColumn {
-                get {
-                    return this.columnFK_BinID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn XpectedQuantityColumn {
-                get {
-                    return this.columnXpectedQuantity;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_BINRow this[int index] {
-                get {
-                    return ((JOB_X_BINRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event JOB_X_BINRowChangeEventHandler JOB_X_BINRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event JOB_X_BINRowChangeEventHandler JOB_X_BINRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event JOB_X_BINRowChangeEventHandler JOB_X_BINRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event JOB_X_BINRowChangeEventHandler JOB_X_BINRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddJOB_X_BINRow(JOB_X_BINRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_BINRow AddJOB_X_BINRow(JOBRow parentJOBRowByFK_JOB_X_BIN_JOB, BINRow parentBINRowByFK_JOB_X_BIN_BIN, byte XpectedQuantity) {
-                JOB_X_BINRow rowJOB_X_BINRow = ((JOB_X_BINRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null,
-                        null,
-                        XpectedQuantity};
-                if ((parentJOBRowByFK_JOB_X_BIN_JOB != null)) {
-                    columnValuesArray[1] = parentJOBRowByFK_JOB_X_BIN_JOB[0];
-                }
-                if ((parentBINRowByFK_JOB_X_BIN_BIN != null)) {
-                    columnValuesArray[2] = parentBINRowByFK_JOB_X_BIN_BIN[0];
-                }
-                rowJOB_X_BINRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowJOB_X_BINRow);
-                return rowJOB_X_BINRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_BINRow FindByJobID_X_BinID(int JobID_X_BinID) {
-                return ((JOB_X_BINRow)(this.Rows.Find(new object[] {
-                            JobID_X_BinID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                JOB_X_BINDataTable cln = ((JOB_X_BINDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new JOB_X_BINDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnJobID_X_BinID = base.Columns["JobID_X_BinID"];
-                this.columnFK_JobID = base.Columns["FK_JobID"];
-                this.columnFK_BinID = base.Columns["FK_BinID"];
-                this.columnXpectedQuantity = base.Columns["XpectedQuantity"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnJobID_X_BinID = new global::System.Data.DataColumn("JobID_X_BinID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnJobID_X_BinID);
-                this.columnFK_JobID = new global::System.Data.DataColumn("FK_JobID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFK_JobID);
-                this.columnFK_BinID = new global::System.Data.DataColumn("FK_BinID", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFK_BinID);
-                this.columnXpectedQuantity = new global::System.Data.DataColumn("XpectedQuantity", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnXpectedQuantity);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnJobID_X_BinID}, true));
-                this.columnJobID_X_BinID.AutoIncrement = true;
-                this.columnJobID_X_BinID.AutoIncrementSeed = -1;
-                this.columnJobID_X_BinID.AutoIncrementStep = -1;
-                this.columnJobID_X_BinID.AllowDBNull = false;
-                this.columnJobID_X_BinID.ReadOnly = true;
-                this.columnJobID_X_BinID.Unique = true;
-                this.columnFK_JobID.AllowDBNull = false;
-                this.columnFK_BinID.AllowDBNull = false;
-                this.columnXpectedQuantity.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_BINRow NewJOB_X_BINRow() {
-                return ((JOB_X_BINRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new JOB_X_BINRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(JOB_X_BINRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.JOB_X_BINRowChanged != null)) {
-                    this.JOB_X_BINRowChanged(this, new JOB_X_BINRowChangeEvent(((JOB_X_BINRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.JOB_X_BINRowChanging != null)) {
-                    this.JOB_X_BINRowChanging(this, new JOB_X_BINRowChangeEvent(((JOB_X_BINRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.JOB_X_BINRowDeleted != null)) {
-                    this.JOB_X_BINRowDeleted(this, new JOB_X_BINRowChangeEvent(((JOB_X_BINRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.JOB_X_BINRowDeleting != null)) {
-                    this.JOB_X_BINRowDeleting(this, new JOB_X_BINRowChangeEvent(((JOB_X_BINRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveJOB_X_BINRow(JOB_X_BINRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                JobVerificationDataSet ds = new JobVerificationDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "JOB_X_BINDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class JOB_X_USERDataTable : global::System.Data.TypedTableBase<JOB_X_USERRow> {
-            
-            private global::System.Data.DataColumn columnFK_JobID;
-            
-            private global::System.Data.DataColumn columnFK_UserID;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_USERDataTable() {
-                this.TableName = "JOB_X_USER";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal JOB_X_USERDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected JOB_X_USERDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FK_JobIDColumn {
-                get {
-                    return this.columnFK_JobID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FK_UserIDColumn {
-                get {
-                    return this.columnFK_UserID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_USERRow this[int index] {
-                get {
-                    return ((JOB_X_USERRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event JOB_X_USERRowChangeEventHandler JOB_X_USERRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event JOB_X_USERRowChangeEventHandler JOB_X_USERRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event JOB_X_USERRowChangeEventHandler JOB_X_USERRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event JOB_X_USERRowChangeEventHandler JOB_X_USERRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddJOB_X_USERRow(JOB_X_USERRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_USERRow AddJOB_X_USERRow(JOBRow parentJOBRowByFK_JOB_X_USER_JOB, USERRow parentUSERRowByFK_JOB_X_USER_USER) {
-                JOB_X_USERRow rowJOB_X_USERRow = ((JOB_X_USERRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null};
-                if ((parentJOBRowByFK_JOB_X_USER_JOB != null)) {
-                    columnValuesArray[0] = parentJOBRowByFK_JOB_X_USER_JOB[0];
-                }
-                if ((parentUSERRowByFK_JOB_X_USER_USER != null)) {
-                    columnValuesArray[1] = parentUSERRowByFK_JOB_X_USER_USER[0];
-                }
-                rowJOB_X_USERRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowJOB_X_USERRow);
-                return rowJOB_X_USERRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                JOB_X_USERDataTable cln = ((JOB_X_USERDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new JOB_X_USERDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnFK_JobID = base.Columns["FK_JobID"];
-                this.columnFK_UserID = base.Columns["FK_UserID"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnFK_JobID = new global::System.Data.DataColumn("FK_JobID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFK_JobID);
-                this.columnFK_UserID = new global::System.Data.DataColumn("FK_UserID", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFK_UserID);
-                this.columnFK_JobID.AllowDBNull = false;
-                this.columnFK_UserID.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_USERRow NewJOB_X_USERRow() {
-                return ((JOB_X_USERRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new JOB_X_USERRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(JOB_X_USERRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.JOB_X_USERRowChanged != null)) {
-                    this.JOB_X_USERRowChanged(this, new JOB_X_USERRowChangeEvent(((JOB_X_USERRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.JOB_X_USERRowChanging != null)) {
-                    this.JOB_X_USERRowChanging(this, new JOB_X_USERRowChangeEvent(((JOB_X_USERRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.JOB_X_USERRowDeleted != null)) {
-                    this.JOB_X_USERRowDeleted(this, new JOB_X_USERRowChangeEvent(((JOB_X_USERRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.JOB_X_USERRowDeleting != null)) {
-                    this.JOB_X_USERRowDeleting(this, new JOB_X_USERRowChangeEvent(((JOB_X_USERRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveJOB_X_USERRow(JOB_X_USERRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                JobVerificationDataSet ds = new JobVerificationDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "JOB_X_USERDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SEQUENCEDataTable : global::System.Data.TypedTableBase<SEQUENCERow> {
-            
             private global::System.Data.DataColumn columnSequenceID;
+            
+            private global::System.Data.DataColumn columnIndex;
+            
+            private global::System.Data.DataColumn columnScanDateTime;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -2063,9 +1460,33 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FK_BinIDColumn {
+                get {
+                    return this.columnFK_BinID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn SequenceIDColumn {
                 get {
                     return this.columnSequenceID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IndexColumn {
+                get {
+                    return this.columnIndex;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ScanDateTimeColumn {
+                get {
+                    return this.columnScanDateTime;
                 }
             }
             
@@ -2106,10 +1527,16 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SEQUENCERow AddSEQUENCERow(int SequenceID) {
+            public SEQUENCERow AddSEQUENCERow(BINRow parentBINRowByFK_SEQUENCE_BIN, int Index, System.DateTime ScanDateTime) {
                 SEQUENCERow rowSEQUENCERow = ((SEQUENCERow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        SequenceID};
+                        null,
+                        null,
+                        Index,
+                        ScanDateTime};
+                if ((parentBINRowByFK_SEQUENCE_BIN != null)) {
+                    columnValuesArray[0] = parentBINRowByFK_SEQUENCE_BIN[0];
+                }
                 rowSEQUENCERow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSEQUENCERow);
                 return rowSEQUENCERow;
@@ -2139,18 +1566,34 @@ namespace Job_Verification_Application {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columnFK_BinID = base.Columns["FK_BinID"];
                 this.columnSequenceID = base.Columns["SequenceID"];
+                this.columnIndex = base.Columns["Index"];
+                this.columnScanDateTime = base.Columns["ScanDateTime"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columnFK_BinID = new global::System.Data.DataColumn("FK_BinID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFK_BinID);
                 this.columnSequenceID = new global::System.Data.DataColumn("SequenceID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSequenceID);
+                this.columnIndex = new global::System.Data.DataColumn("Index", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIndex);
+                this.columnScanDateTime = new global::System.Data.DataColumn("ScanDateTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnScanDateTime);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnSequenceID}, true));
+                this.columnFK_BinID.AllowDBNull = false;
+                this.columnSequenceID.AutoIncrement = true;
+                this.columnSequenceID.AutoIncrementSeed = -1;
+                this.columnSequenceID.AutoIncrementStep = -1;
                 this.columnSequenceID.AllowDBNull = false;
+                this.columnSequenceID.ReadOnly = true;
                 this.columnSequenceID.Unique = true;
+                this.columnIndex.AllowDBNull = false;
+                this.columnScanDateTime.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2237,290 +1680,6 @@ namespace Job_Verification_Application {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "SEQUENCEDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SEQUENCE_X_BINDataTable : global::System.Data.TypedTableBase<SEQUENCE_X_BINRow> {
-            
-            private global::System.Data.DataColumn columnFK_JobID_X_BinID;
-            
-            private global::System.Data.DataColumn columnFK_SequenceID;
-            
-            private global::System.Data.DataColumn columnScanDateTime;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SEQUENCE_X_BINDataTable() {
-                this.TableName = "SEQUENCE_X_BIN";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal SEQUENCE_X_BINDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected SEQUENCE_X_BINDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FK_JobID_X_BinIDColumn {
-                get {
-                    return this.columnFK_JobID_X_BinID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FK_SequenceIDColumn {
-                get {
-                    return this.columnFK_SequenceID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ScanDateTimeColumn {
-                get {
-                    return this.columnScanDateTime;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SEQUENCE_X_BINRow this[int index] {
-                get {
-                    return ((SEQUENCE_X_BINRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SEQUENCE_X_BINRowChangeEventHandler SEQUENCE_X_BINRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SEQUENCE_X_BINRowChangeEventHandler SEQUENCE_X_BINRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SEQUENCE_X_BINRowChangeEventHandler SEQUENCE_X_BINRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SEQUENCE_X_BINRowChangeEventHandler SEQUENCE_X_BINRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddSEQUENCE_X_BINRow(SEQUENCE_X_BINRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SEQUENCE_X_BINRow AddSEQUENCE_X_BINRow(JOB_X_BINRow parentJOB_X_BINRowByFK_SEQUENCE_X_BIN_JOB_X_BIN, SEQUENCERow parentSEQUENCERowByFK_SEQUENCE_X_BIN_SEQUENCE, System.DateTime ScanDateTime) {
-                SEQUENCE_X_BINRow rowSEQUENCE_X_BINRow = ((SEQUENCE_X_BINRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null,
-                        ScanDateTime};
-                if ((parentJOB_X_BINRowByFK_SEQUENCE_X_BIN_JOB_X_BIN != null)) {
-                    columnValuesArray[0] = parentJOB_X_BINRowByFK_SEQUENCE_X_BIN_JOB_X_BIN[0];
-                }
-                if ((parentSEQUENCERowByFK_SEQUENCE_X_BIN_SEQUENCE != null)) {
-                    columnValuesArray[1] = parentSEQUENCERowByFK_SEQUENCE_X_BIN_SEQUENCE[0];
-                }
-                rowSEQUENCE_X_BINRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSEQUENCE_X_BINRow);
-                return rowSEQUENCE_X_BINRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                SEQUENCE_X_BINDataTable cln = ((SEQUENCE_X_BINDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new SEQUENCE_X_BINDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnFK_JobID_X_BinID = base.Columns["FK_JobID_X_BinID"];
-                this.columnFK_SequenceID = base.Columns["FK_SequenceID"];
-                this.columnScanDateTime = base.Columns["ScanDateTime"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnFK_JobID_X_BinID = new global::System.Data.DataColumn("FK_JobID_X_BinID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFK_JobID_X_BinID);
-                this.columnFK_SequenceID = new global::System.Data.DataColumn("FK_SequenceID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFK_SequenceID);
-                this.columnScanDateTime = new global::System.Data.DataColumn("ScanDateTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnScanDateTime);
-                this.columnFK_JobID_X_BinID.AllowDBNull = false;
-                this.columnFK_SequenceID.AllowDBNull = false;
-                this.columnScanDateTime.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SEQUENCE_X_BINRow NewSEQUENCE_X_BINRow() {
-                return ((SEQUENCE_X_BINRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SEQUENCE_X_BINRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(SEQUENCE_X_BINRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.SEQUENCE_X_BINRowChanged != null)) {
-                    this.SEQUENCE_X_BINRowChanged(this, new SEQUENCE_X_BINRowChangeEvent(((SEQUENCE_X_BINRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.SEQUENCE_X_BINRowChanging != null)) {
-                    this.SEQUENCE_X_BINRowChanging(this, new SEQUENCE_X_BINRowChangeEvent(((SEQUENCE_X_BINRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.SEQUENCE_X_BINRowDeleted != null)) {
-                    this.SEQUENCE_X_BINRowDeleted(this, new SEQUENCE_X_BINRowChangeEvent(((SEQUENCE_X_BINRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.SEQUENCE_X_BINRowDeleting != null)) {
-                    this.SEQUENCE_X_BINRowDeleting(this, new SEQUENCE_X_BINRowChangeEvent(((SEQUENCE_X_BINRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveSEQUENCE_X_BINRow(SEQUENCE_X_BINRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                JobVerificationDataSet ds = new JobVerificationDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SEQUENCE_X_BINDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2967,6 +2126,14 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public USER_X_BINRow FindByFK_UserIDFK_BinID(byte FK_UserID, int FK_BinID) {
+                return ((USER_X_BINRow)(this.Rows.Find(new object[] {
+                            FK_UserID,
+                            FK_BinID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 USER_X_BINDataTable cln = ((USER_X_BINDataTable)(base.Clone()));
                 cln.InitVars();
@@ -2991,8 +2158,11 @@ namespace Job_Verification_Application {
             private void InitClass() {
                 this.columnFK_UserID = new global::System.Data.DataColumn("FK_UserID", typeof(byte), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFK_UserID);
-                this.columnFK_BinID = new global::System.Data.DataColumn("FK_BinID", typeof(byte), null, global::System.Data.MappingType.Element);
+                this.columnFK_BinID = new global::System.Data.DataColumn("FK_BinID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFK_BinID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnFK_UserID,
+                                this.columnFK_BinID}, true));
                 this.columnFK_UserID.AllowDBNull = false;
                 this.columnFK_BinID.AllowDBNull = false;
             }
@@ -3122,6 +2292,316 @@ namespace Job_Verification_Application {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class JOB_X_USERDataTable : global::System.Data.TypedTableBase<JOB_X_USERRow> {
+            
+            private global::System.Data.DataColumn columnJobID;
+            
+            private global::System.Data.DataColumn columnBinID;
+            
+            private global::System.Data.DataColumn columnUserID;
+            
+            private global::System.Data.DataColumn columnUserFName;
+            
+            private global::System.Data.DataColumn columnUserLName;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public JOB_X_USERDataTable() {
+                this.TableName = "JOB_X_USER";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal JOB_X_USERDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected JOB_X_USERDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn JobIDColumn {
+                get {
+                    return this.columnJobID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn BinIDColumn {
+                get {
+                    return this.columnBinID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UserIDColumn {
+                get {
+                    return this.columnUserID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UserFNameColumn {
+                get {
+                    return this.columnUserFName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UserLNameColumn {
+                get {
+                    return this.columnUserLName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public JOB_X_USERRow this[int index] {
+                get {
+                    return ((JOB_X_USERRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event JOB_X_USERRowChangeEventHandler JOB_X_USERRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event JOB_X_USERRowChangeEventHandler JOB_X_USERRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event JOB_X_USERRowChangeEventHandler JOB_X_USERRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event JOB_X_USERRowChangeEventHandler JOB_X_USERRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddJOB_X_USERRow(JOB_X_USERRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public JOB_X_USERRow AddJOB_X_USERRow(int JobID, int BinID, byte UserID, string UserFName, string UserLName) {
+                JOB_X_USERRow rowJOB_X_USERRow = ((JOB_X_USERRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        JobID,
+                        BinID,
+                        UserID,
+                        UserFName,
+                        UserLName};
+                rowJOB_X_USERRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowJOB_X_USERRow);
+                return rowJOB_X_USERRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                JOB_X_USERDataTable cln = ((JOB_X_USERDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new JOB_X_USERDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnJobID = base.Columns["JobID"];
+                this.columnBinID = base.Columns["BinID"];
+                this.columnUserID = base.Columns["UserID"];
+                this.columnUserFName = base.Columns["UserFName"];
+                this.columnUserLName = base.Columns["UserLName"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnJobID = new global::System.Data.DataColumn("JobID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnJobID);
+                this.columnBinID = new global::System.Data.DataColumn("BinID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBinID);
+                this.columnUserID = new global::System.Data.DataColumn("UserID", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserID);
+                this.columnUserFName = new global::System.Data.DataColumn("UserFName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserFName);
+                this.columnUserLName = new global::System.Data.DataColumn("UserLName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserLName);
+                this.columnJobID.AllowDBNull = false;
+                this.columnBinID.AllowDBNull = false;
+                this.columnUserID.AllowDBNull = false;
+                this.columnUserFName.AllowDBNull = false;
+                this.columnUserFName.MaxLength = 25;
+                this.columnUserLName.AllowDBNull = false;
+                this.columnUserLName.MaxLength = 25;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public JOB_X_USERRow NewJOB_X_USERRow() {
+                return ((JOB_X_USERRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new JOB_X_USERRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(JOB_X_USERRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.JOB_X_USERRowChanged != null)) {
+                    this.JOB_X_USERRowChanged(this, new JOB_X_USERRowChangeEvent(((JOB_X_USERRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.JOB_X_USERRowChanging != null)) {
+                    this.JOB_X_USERRowChanging(this, new JOB_X_USERRowChangeEvent(((JOB_X_USERRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.JOB_X_USERRowDeleted != null)) {
+                    this.JOB_X_USERRowDeleted(this, new JOB_X_USERRowChangeEvent(((JOB_X_USERRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.JOB_X_USERRowDeleting != null)) {
+                    this.JOB_X_USERRowDeleting(this, new JOB_X_USERRowChangeEvent(((JOB_X_USERRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveJOB_X_USERRow(JOB_X_USERRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                JobVerificationDataSet ds = new JobVerificationDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "JOB_X_USERDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class BINRow : global::System.Data.DataRow {
@@ -3137,9 +2617,9 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte BinID {
+            public int BinID {
                 get {
-                    return ((byte)(this[this.tableBIN.BinIDColumn]));
+                    return ((int)(this[this.tableBIN.BinIDColumn]));
                 }
                 set {
                     this[this.tableBIN.BinIDColumn] = value;
@@ -3148,12 +2628,84 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_BINRow[] GetJOB_X_BINRows() {
-                if ((this.Table.ChildRelations["FK_JOB_X_BIN_BIN"] == null)) {
-                    return new JOB_X_BINRow[0];
+            public int FK_JobID {
+                get {
+                    return ((int)(this[this.tableBIN.FK_JobIDColumn]));
+                }
+                set {
+                    this[this.tableBIN.FK_JobIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte Index {
+                get {
+                    return ((byte)(this[this.tableBIN.IndexColumn]));
+                }
+                set {
+                    this[this.tableBIN.IndexColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short XpectedQuantity {
+                get {
+                    try {
+                        return ((short)(this[this.tableBIN.XpectedQuantityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'XpectedQuantity\' in table \'BIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBIN.XpectedQuantityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Completed {
+                get {
+                    return ((bool)(this[this.tableBIN.CompletedColumn]));
+                }
+                set {
+                    this[this.tableBIN.CompletedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public JOBRow JOBRow {
+                get {
+                    return ((JOBRow)(this.GetParentRow(this.Table.ParentRelations["FK_BIN_JOB"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_BIN_JOB"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsXpectedQuantityNull() {
+                return this.IsNull(this.tableBIN.XpectedQuantityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetXpectedQuantityNull() {
+                this[this.tableBIN.XpectedQuantityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SEQUENCERow[] GetSEQUENCERows() {
+                if ((this.Table.ChildRelations["FK_SEQUENCE_BIN"] == null)) {
+                    return new SEQUENCERow[0];
                 }
                 else {
-                    return ((JOB_X_BINRow[])(base.GetChildRows(this.Table.ChildRelations["FK_JOB_X_BIN_BIN"])));
+                    return ((SEQUENCERow[])(base.GetChildRows(this.Table.ChildRelations["FK_SEQUENCE_BIN"])));
                 }
             }
             
@@ -3262,12 +2814,7 @@ namespace Job_Verification_Application {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int FK_ClientID {
                 get {
-                    try {
-                        return ((int)(this[this.tableJOB.FK_ClientIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FK_ClientID\' in table \'JOB\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tableJOB.FK_ClientIDColumn]));
                 }
                 set {
                     this[this.tableJOB.FK_ClientIDColumn] = value;
@@ -3299,186 +2846,12 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFK_ClientIDNull() {
-                return this.IsNull(this.tableJOB.FK_ClientIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFK_ClientIDNull() {
-                this[this.tableJOB.FK_ClientIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_BINRow[] GetJOB_X_BINRows() {
-                if ((this.Table.ChildRelations["FK_JOB_X_BIN_JOB"] == null)) {
-                    return new JOB_X_BINRow[0];
+            public BINRow[] GetBINRows() {
+                if ((this.Table.ChildRelations["FK_BIN_JOB"] == null)) {
+                    return new BINRow[0];
                 }
                 else {
-                    return ((JOB_X_BINRow[])(base.GetChildRows(this.Table.ChildRelations["FK_JOB_X_BIN_JOB"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_USERRow[] GetJOB_X_USERRows() {
-                if ((this.Table.ChildRelations["FK_JOB_X_USER_JOB"] == null)) {
-                    return new JOB_X_USERRow[0];
-                }
-                else {
-                    return ((JOB_X_USERRow[])(base.GetChildRows(this.Table.ChildRelations["FK_JOB_X_USER_JOB"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class JOB_X_BINRow : global::System.Data.DataRow {
-            
-            private JOB_X_BINDataTable tableJOB_X_BIN;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal JOB_X_BINRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableJOB_X_BIN = ((JOB_X_BINDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int JobID_X_BinID {
-                get {
-                    return ((int)(this[this.tableJOB_X_BIN.JobID_X_BinIDColumn]));
-                }
-                set {
-                    this[this.tableJOB_X_BIN.JobID_X_BinIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int FK_JobID {
-                get {
-                    return ((int)(this[this.tableJOB_X_BIN.FK_JobIDColumn]));
-                }
-                set {
-                    this[this.tableJOB_X_BIN.FK_JobIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte FK_BinID {
-                get {
-                    return ((byte)(this[this.tableJOB_X_BIN.FK_BinIDColumn]));
-                }
-                set {
-                    this[this.tableJOB_X_BIN.FK_BinIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte XpectedQuantity {
-                get {
-                    return ((byte)(this[this.tableJOB_X_BIN.XpectedQuantityColumn]));
-                }
-                set {
-                    this[this.tableJOB_X_BIN.XpectedQuantityColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BINRow BINRow {
-                get {
-                    return ((BINRow)(this.GetParentRow(this.Table.ParentRelations["FK_JOB_X_BIN_BIN"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_JOB_X_BIN_BIN"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOBRow JOBRow {
-                get {
-                    return ((JOBRow)(this.GetParentRow(this.Table.ParentRelations["FK_JOB_X_BIN_JOB"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_JOB_X_BIN_JOB"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SEQUENCE_X_BINRow[] GetSEQUENCE_X_BINRows() {
-                if ((this.Table.ChildRelations["FK_SEQUENCE_X_BIN_JOB_X_BIN"] == null)) {
-                    return new SEQUENCE_X_BINRow[0];
-                }
-                else {
-                    return ((SEQUENCE_X_BINRow[])(base.GetChildRows(this.Table.ChildRelations["FK_SEQUENCE_X_BIN_JOB_X_BIN"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class JOB_X_USERRow : global::System.Data.DataRow {
-            
-            private JOB_X_USERDataTable tableJOB_X_USER;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal JOB_X_USERRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableJOB_X_USER = ((JOB_X_USERDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int FK_JobID {
-                get {
-                    return ((int)(this[this.tableJOB_X_USER.FK_JobIDColumn]));
-                }
-                set {
-                    this[this.tableJOB_X_USER.FK_JobIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte FK_UserID {
-                get {
-                    return ((byte)(this[this.tableJOB_X_USER.FK_UserIDColumn]));
-                }
-                set {
-                    this[this.tableJOB_X_USER.FK_UserIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOBRow JOBRow {
-                get {
-                    return ((JOBRow)(this.GetParentRow(this.Table.ParentRelations["FK_JOB_X_USER_JOB"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_JOB_X_USER_JOB"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public USERRow USERRow {
-                get {
-                    return ((USERRow)(this.GetParentRow(this.Table.ParentRelations["FK_JOB_X_USER_USER"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_JOB_X_USER_USER"]);
+                    return ((BINRow[])(base.GetChildRows(this.Table.ChildRelations["FK_BIN_JOB"])));
                 }
             }
         }
@@ -3499,6 +2872,17 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int FK_BinID {
+                get {
+                    return ((int)(this[this.tableSEQUENCE.FK_BinIDColumn]));
+                }
+                set {
+                    this[this.tableSEQUENCE.FK_BinIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int SequenceID {
                 get {
                     return ((int)(this[this.tableSEQUENCE.SequenceIDColumn]));
@@ -3510,49 +2894,12 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SEQUENCE_X_BINRow[] GetSEQUENCE_X_BINRows() {
-                if ((this.Table.ChildRelations["FK_SEQUENCE_X_BIN_SEQUENCE"] == null)) {
-                    return new SEQUENCE_X_BINRow[0];
-                }
-                else {
-                    return ((SEQUENCE_X_BINRow[])(base.GetChildRows(this.Table.ChildRelations["FK_SEQUENCE_X_BIN_SEQUENCE"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class SEQUENCE_X_BINRow : global::System.Data.DataRow {
-            
-            private SEQUENCE_X_BINDataTable tableSEQUENCE_X_BIN;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal SEQUENCE_X_BINRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableSEQUENCE_X_BIN = ((SEQUENCE_X_BINDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int FK_JobID_X_BinID {
+            public int Index {
                 get {
-                    return ((int)(this[this.tableSEQUENCE_X_BIN.FK_JobID_X_BinIDColumn]));
+                    return ((int)(this[this.tableSEQUENCE.IndexColumn]));
                 }
                 set {
-                    this[this.tableSEQUENCE_X_BIN.FK_JobID_X_BinIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int FK_SequenceID {
-                get {
-                    return ((int)(this[this.tableSEQUENCE_X_BIN.FK_SequenceIDColumn]));
-                }
-                set {
-                    this[this.tableSEQUENCE_X_BIN.FK_SequenceIDColumn] = value;
+                    this[this.tableSEQUENCE.IndexColumn] = value;
                 }
             }
             
@@ -3560,32 +2907,21 @@ namespace Job_Verification_Application {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime ScanDateTime {
                 get {
-                    return ((global::System.DateTime)(this[this.tableSEQUENCE_X_BIN.ScanDateTimeColumn]));
+                    return ((global::System.DateTime)(this[this.tableSEQUENCE.ScanDateTimeColumn]));
                 }
                 set {
-                    this[this.tableSEQUENCE_X_BIN.ScanDateTimeColumn] = value;
+                    this[this.tableSEQUENCE.ScanDateTimeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_BINRow JOB_X_BINRow {
+            public BINRow BINRow {
                 get {
-                    return ((JOB_X_BINRow)(this.GetParentRow(this.Table.ParentRelations["FK_SEQUENCE_X_BIN_JOB_X_BIN"])));
+                    return ((BINRow)(this.GetParentRow(this.Table.ParentRelations["FK_SEQUENCE_BIN"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_SEQUENCE_X_BIN_JOB_X_BIN"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SEQUENCERow SEQUENCERow {
-                get {
-                    return ((SEQUENCERow)(this.GetParentRow(this.Table.ParentRelations["FK_SEQUENCE_X_BIN_SEQUENCE"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_SEQUENCE_X_BIN_SEQUENCE"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_SEQUENCE_BIN"]);
                 }
             }
         }
@@ -3639,17 +2975,6 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_USERRow[] GetJOB_X_USERRows() {
-                if ((this.Table.ChildRelations["FK_JOB_X_USER_USER"] == null)) {
-                    return new JOB_X_USERRow[0];
-                }
-                else {
-                    return ((JOB_X_USERRow[])(base.GetChildRows(this.Table.ChildRelations["FK_JOB_X_USER_USER"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public USER_X_BINRow[] GetUSER_X_BINRows() {
                 if ((this.Table.ChildRelations["FK_USER_X_BIN_USER"] == null)) {
                     return new USER_X_BINRow[0];
@@ -3687,9 +3012,9 @@ namespace Job_Verification_Application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte FK_BinID {
+            public int FK_BinID {
                 get {
-                    return ((byte)(this[this.tableUSER_X_BIN.FK_BinIDColumn]));
+                    return ((int)(this[this.tableUSER_X_BIN.FK_BinIDColumn]));
                 }
                 set {
                     this[this.tableUSER_X_BIN.FK_BinIDColumn] = value;
@@ -3715,6 +3040,76 @@ namespace Job_Verification_Application {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_USER_X_BIN_USER"]);
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class JOB_X_USERRow : global::System.Data.DataRow {
+            
+            private JOB_X_USERDataTable tableJOB_X_USER;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal JOB_X_USERRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableJOB_X_USER = ((JOB_X_USERDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int JobID {
+                get {
+                    return ((int)(this[this.tableJOB_X_USER.JobIDColumn]));
+                }
+                set {
+                    this[this.tableJOB_X_USER.JobIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int BinID {
+                get {
+                    return ((int)(this[this.tableJOB_X_USER.BinIDColumn]));
+                }
+                set {
+                    this[this.tableJOB_X_USER.BinIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte UserID {
+                get {
+                    return ((byte)(this[this.tableJOB_X_USER.UserIDColumn]));
+                }
+                set {
+                    this[this.tableJOB_X_USER.UserIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string UserFName {
+                get {
+                    return ((string)(this[this.tableJOB_X_USER.UserFNameColumn]));
+                }
+                set {
+                    this[this.tableJOB_X_USER.UserFNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string UserLName {
+                get {
+                    return ((string)(this[this.tableJOB_X_USER.UserLNameColumn]));
+                }
+                set {
+                    this[this.tableJOB_X_USER.UserLNameColumn] = value;
                 }
             }
         }
@@ -3825,74 +3220,6 @@ namespace Job_Verification_Application {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class JOB_X_BINRowChangeEvent : global::System.EventArgs {
-            
-            private JOB_X_BINRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_BINRowChangeEvent(JOB_X_BINRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_BINRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class JOB_X_USERRowChangeEvent : global::System.EventArgs {
-            
-            private JOB_X_USERRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_USERRowChangeEvent(JOB_X_USERRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JOB_X_USERRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public class SEQUENCERowChangeEvent : global::System.EventArgs {
             
             private SEQUENCERow eventRow;
@@ -3909,40 +3236,6 @@ namespace Job_Verification_Application {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SEQUENCERow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class SEQUENCE_X_BINRowChangeEvent : global::System.EventArgs {
-            
-            private SEQUENCE_X_BINRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SEQUENCE_X_BINRowChangeEvent(SEQUENCE_X_BINRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SEQUENCE_X_BINRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4011,6 +3304,40 @@ namespace Job_Verification_Application {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public USER_X_BINRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class JOB_X_USERRowChangeEvent : global::System.EventArgs {
+            
+            private JOB_X_USERRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public JOB_X_USERRowChangeEvent(JOB_X_USERRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public JOB_X_USERRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4151,25 +3478,47 @@ namespace Job_Verification_Application.JobVerificationDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "BIN";
             tableMapping.ColumnMappings.Add("BinID", "BinID");
+            tableMapping.ColumnMappings.Add("FK_JobID", "FK_JobID");
+            tableMapping.ColumnMappings.Add("Index", "Index");
+            tableMapping.ColumnMappings.Add("XpectedQuantity", "XpectedQuantity");
+            tableMapping.ColumnMappings.Add("Completed", "Completed");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[BIN] WHERE (([BinID] = @Original_BinID))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[BIN] WHERE (([BinID] = @Original_BinID) AND ([FK_JobID] = @Original_FK_JobID) AND ([Index] = @Original_Index) AND ((@IsNull_XpectedQuantity = 1 AND [XpectedQuantity] IS NULL) OR ([XpectedQuantity] = @Original_XpectedQuantity)) AND ([Completed] = @Original_Completed))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BinID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BinID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BinID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BinID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_JobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_JobID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Index", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Index", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_XpectedQuantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "XpectedQuantity", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_XpectedQuantity", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "XpectedQuantity", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Completed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Completed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[BIN] ([BinID]) VALUES (@BinID);\r\nSELECT BinID FROM BIN WHERE (" +
-                "BinID = @BinID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[BIN] ([FK_JobID], [Index], [XpectedQuantity], [Completed]) VAL" +
+                "UES (@FK_JobID, @Index, @XpectedQuantity, @Completed);\r\nSELECT BinID, FK_JobID, " +
+                "[Index], XpectedQuantity, Completed FROM BIN WHERE (BinID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BinID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_JobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_JobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Index", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Index", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@XpectedQuantity", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "XpectedQuantity", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Completed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Completed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[BIN] SET [BinID] = @BinID WHERE (([BinID] = @Original_BinID));\r\nSEL" +
-                "ECT BinID FROM BIN WHERE (BinID = @BinID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[BIN] SET [FK_JobID] = @FK_JobID, [Index] = @Index, [XpectedQuantity] = @XpectedQuantity, [Completed] = @Completed WHERE (([BinID] = @Original_BinID) AND ([FK_JobID] = @Original_FK_JobID) AND ([Index] = @Original_Index) AND ((@IsNull_XpectedQuantity = 1 AND [XpectedQuantity] IS NULL) OR ([XpectedQuantity] = @Original_XpectedQuantity)) AND ([Completed] = @Original_Completed));
+SELECT BinID, FK_JobID, [Index], XpectedQuantity, Completed FROM BIN WHERE (BinID = @BinID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BinID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BinID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BinID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_JobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_JobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Index", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Index", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@XpectedQuantity", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "XpectedQuantity", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Completed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Completed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BinID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BinID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_JobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_JobID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Index", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Index", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_XpectedQuantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "XpectedQuantity", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_XpectedQuantity", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "XpectedQuantity", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Completed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Completed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BinID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "BinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4185,7 +3534,7 @@ namespace Job_Verification_Application.JobVerificationDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT BinID FROM dbo.BIN";
+            this._commandCollection[0].CommandText = "SELECT BinID, FK_JobID, [Index], XpectedQuantity, Completed FROM dbo.BIN";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4246,8 +3595,19 @@ namespace Job_Verification_Application.JobVerificationDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(byte Original_BinID) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((byte)(Original_BinID));
+        public virtual int Delete(int Original_BinID, int Original_FK_JobID, byte Original_Index, global::System.Nullable<short> Original_XpectedQuantity, bool Original_Completed) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_BinID));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_FK_JobID));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((byte)(Original_Index));
+            if ((Original_XpectedQuantity.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((short)(Original_XpectedQuantity.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((bool)(Original_Completed));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4268,8 +3628,16 @@ namespace Job_Verification_Application.JobVerificationDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(byte BinID) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((byte)(BinID));
+        public virtual int Insert(int FK_JobID, byte Index, global::System.Nullable<short> XpectedQuantity, bool Completed) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(FK_JobID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((byte)(Index));
+            if ((XpectedQuantity.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((short)(XpectedQuantity.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(Completed));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4290,9 +3658,29 @@ namespace Job_Verification_Application.JobVerificationDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(byte BinID, byte Original_BinID) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((byte)(BinID));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((byte)(Original_BinID));
+        public virtual int Update(int FK_JobID, byte Index, global::System.Nullable<short> XpectedQuantity, bool Completed, int Original_BinID, int Original_FK_JobID, byte Original_Index, global::System.Nullable<short> Original_XpectedQuantity, bool Original_Completed, int BinID) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(FK_JobID));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((byte)(Index));
+            if ((XpectedQuantity.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((short)(XpectedQuantity.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(Completed));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_BinID));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_FK_JobID));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((byte)(Original_Index));
+            if ((Original_XpectedQuantity.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((short)(Original_XpectedQuantity.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(Original_Completed));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(BinID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4313,8 +3701,8 @@ namespace Job_Verification_Application.JobVerificationDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(byte Original_BinID) {
-            return this.Update(Original_BinID, Original_BinID);
+        public virtual int Update(int FK_JobID, byte Index, global::System.Nullable<short> XpectedQuantity, bool Completed, int Original_BinID, int Original_FK_JobID, byte Original_Index, global::System.Nullable<short> Original_XpectedQuantity, bool Original_Completed) {
+            return this.Update(FK_JobID, Index, XpectedQuantity, Completed, Original_BinID, Original_FK_JobID, Original_Index, Original_XpectedQuantity, Original_Completed, Original_BinID);
         }
     }
     
@@ -4451,21 +3839,20 @@ namespace Job_Verification_Application.JobVerificationDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ClientName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[CLIENT] ([ClientID], [ClientName]) VALUES (@ClientID, @ClientN" +
-                "ame);\r\nSELECT ClientID, ClientName FROM CLIENT WHERE (ClientID = @ClientID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[CLIENT] ([ClientName]) VALUES (@ClientName);\r\nSELECT ClientID," +
+                " ClientName FROM CLIENT WHERE (ClientID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClientID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClientName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[CLIENT] SET [ClientID] = @ClientID, [ClientName] = @ClientName WHER" +
-                "E (([ClientID] = @Original_ClientID) AND ([ClientName] = @Original_ClientName));" +
-                "\r\nSELECT ClientID, ClientName FROM CLIENT WHERE (ClientID = @ClientID)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[CLIENT] SET [ClientName] = @ClientName WHERE (([ClientID] = @Origin" +
+                "al_ClientID) AND ([ClientName] = @Original_ClientName));\r\nSELECT ClientID, Clien" +
+                "tName FROM CLIENT WHERE (ClientID = @ClientID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClientID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClientName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ClientID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ClientName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClientID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ClientID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4570,13 +3957,12 @@ namespace Job_Verification_Application.JobVerificationDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int ClientID, string ClientName) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ClientID));
+        public virtual int Insert(string ClientName) {
             if ((ClientName == null)) {
                 throw new global::System.ArgumentNullException("ClientName");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(ClientName));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(ClientName));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4598,21 +3984,21 @@ namespace Job_Verification_Application.JobVerificationDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int ClientID, string ClientName, int Original_ClientID, string Original_ClientName) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ClientID));
+        public virtual int Update(string ClientName, int Original_ClientID, string Original_ClientName, int ClientID) {
             if ((ClientName == null)) {
                 throw new global::System.ArgumentNullException("ClientName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(ClientName));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(ClientName));
             }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_ClientID));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Original_ClientID));
             if ((Original_ClientName == null)) {
                 throw new global::System.ArgumentNullException("Original_ClientName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_ClientName));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Original_ClientName));
             }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(ClientID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4634,7 +4020,7 @@ namespace Job_Verification_Application.JobVerificationDataSetTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(string ClientName, int Original_ClientID, string Original_ClientName) {
-            return this.Update(Original_ClientID, ClientName, Original_ClientID, Original_ClientName);
+            return this.Update(ClientName, Original_ClientID, Original_ClientName, Original_ClientID);
         }
     }
     
@@ -4766,14 +4152,12 @@ namespace Job_Verification_Application.JobVerificationDataSetTableAdapters {
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[JOB] WHERE (([JobID] = @Original_JobID) AND ((@IsNull_JobDesc " +
-                "= 1 AND [JobDesc] IS NULL) OR ([JobDesc] = @Original_JobDesc)) AND ((@IsNull_FK_" +
-                "ClientID = 1 AND [FK_ClientID] IS NULL) OR ([FK_ClientID] = @Original_FK_ClientI" +
-                "D)))";
+                "= 1 AND [JobDesc] IS NULL) OR ([JobDesc] = @Original_JobDesc)) AND ([FK_ClientID" +
+                "] = @Original_FK_ClientID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_JobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "JobID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_JobDesc", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "JobDesc", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_JobDesc", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "JobDesc", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FK_ClientID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ClientID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_ClientID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ClientID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
@@ -4786,7 +4170,7 @@ namespace Job_Verification_Application.JobVerificationDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_ClientID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ClientID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[JOB] SET [JobID] = @JobID, [JobDesc] = @JobDesc, [FK_ClientID] = @FK_ClientID WHERE (([JobID] = @Original_JobID) AND ((@IsNull_JobDesc = 1 AND [JobDesc] IS NULL) OR ([JobDesc] = @Original_JobDesc)) AND ((@IsNull_FK_ClientID = 1 AND [FK_ClientID] IS NULL) OR ([FK_ClientID] = @Original_FK_ClientID)));
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[JOB] SET [JobID] = @JobID, [JobDesc] = @JobDesc, [FK_ClientID] = @FK_ClientID WHERE (([JobID] = @Original_JobID) AND ((@IsNull_JobDesc = 1 AND [JobDesc] IS NULL) OR ([JobDesc] = @Original_JobDesc)) AND ([FK_ClientID] = @Original_FK_ClientID));
 SELECT JobID, JobDesc, FK_ClientID FROM JOB WHERE (JobID = @JobID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@JobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "JobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4795,7 +4179,6 @@ SELECT JobID, JobDesc, FK_ClientID FROM JOB WHERE (JobID = @JobID)";
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_JobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "JobID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_JobDesc", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "JobDesc", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_JobDesc", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "JobDesc", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FK_ClientID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ClientID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_ClientID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ClientID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -4873,7 +4256,7 @@ SELECT JobID, JobDesc, FK_ClientID FROM JOB WHERE (JobID = @JobID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_JobID, string Original_JobDesc, global::System.Nullable<int> Original_FK_ClientID) {
+        public virtual int Delete(int Original_JobID, string Original_JobDesc, int Original_FK_ClientID) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_JobID));
             if ((Original_JobDesc == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -4883,14 +4266,7 @@ SELECT JobID, JobDesc, FK_ClientID FROM JOB WHERE (JobID = @JobID)";
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_JobDesc));
             }
-            if ((Original_FK_ClientID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_FK_ClientID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_FK_ClientID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4911,7 +4287,7 @@ SELECT JobID, JobDesc, FK_ClientID FROM JOB WHERE (JobID = @JobID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int JobID, string JobDesc, global::System.Nullable<int> FK_ClientID) {
+        public virtual int Insert(int JobID, string JobDesc, int FK_ClientID) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(JobID));
             if ((JobDesc == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -4919,12 +4295,7 @@ SELECT JobID, JobDesc, FK_ClientID FROM JOB WHERE (JobID = @JobID)";
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(JobDesc));
             }
-            if ((FK_ClientID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(FK_ClientID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(FK_ClientID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4945,7 +4316,7 @@ SELECT JobID, JobDesc, FK_ClientID FROM JOB WHERE (JobID = @JobID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int JobID, string JobDesc, global::System.Nullable<int> FK_ClientID, int Original_JobID, string Original_JobDesc, global::System.Nullable<int> Original_FK_ClientID) {
+        public virtual int Update(int JobID, string JobDesc, int FK_ClientID, int Original_JobID, string Original_JobDesc, int Original_FK_ClientID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(JobID));
             if ((JobDesc == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -4953,12 +4324,7 @@ SELECT JobID, JobDesc, FK_ClientID FROM JOB WHERE (JobID = @JobID)";
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(JobDesc));
             }
-            if ((FK_ClientID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(FK_ClientID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(FK_ClientID));
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_JobID));
             if ((Original_JobDesc == null)) {
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
@@ -4968,14 +4334,7 @@ SELECT JobID, JobDesc, FK_ClientID FROM JOB WHERE (JobID = @JobID)";
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_JobDesc));
             }
-            if ((Original_FK_ClientID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_FK_ClientID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_FK_ClientID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4996,552 +4355,8 @@ SELECT JobID, JobDesc, FK_ClientID FROM JOB WHERE (JobID = @JobID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string JobDesc, global::System.Nullable<int> FK_ClientID, int Original_JobID, string Original_JobDesc, global::System.Nullable<int> Original_FK_ClientID) {
+        public virtual int Update(string JobDesc, int FK_ClientID, int Original_JobID, string Original_JobDesc, int Original_FK_ClientID) {
             return this.Update(Original_JobID, JobDesc, FK_ClientID, Original_JobID, Original_JobDesc, Original_FK_ClientID);
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class JOB_X_BINTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public JOB_X_BINTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "JOB_X_BIN";
-            tableMapping.ColumnMappings.Add("JobID_X_BinID", "JobID_X_BinID");
-            tableMapping.ColumnMappings.Add("FK_JobID", "FK_JobID");
-            tableMapping.ColumnMappings.Add("FK_BinID", "FK_BinID");
-            tableMapping.ColumnMappings.Add("XpectedQuantity", "XpectedQuantity");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[JOB_X_BIN] WHERE (([JobID_X_BinID] = @Original_JobID_X_BinID) " +
-                "AND ([FK_JobID] = @Original_FK_JobID) AND ([FK_BinID] = @Original_FK_BinID) AND " +
-                "([XpectedQuantity] = @Original_XpectedQuantity))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_JobID_X_BinID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "JobID_X_BinID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_JobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_JobID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_BinID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_BinID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_XpectedQuantity", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "XpectedQuantity", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[JOB_X_BIN] ([FK_JobID], [FK_BinID], [XpectedQuantity]) VALUES " +
-                "(@FK_JobID, @FK_BinID, @XpectedQuantity);\r\nSELECT JobID_X_BinID, FK_JobID, FK_Bi" +
-                "nID, XpectedQuantity FROM JOB_X_BIN WHERE (JobID_X_BinID = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_JobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_JobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_BinID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_BinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@XpectedQuantity", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "XpectedQuantity", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[JOB_X_BIN] SET [FK_JobID] = @FK_JobID, [FK_BinID] = @FK_BinID, [XpectedQuantity] = @XpectedQuantity WHERE (([JobID_X_BinID] = @Original_JobID_X_BinID) AND ([FK_JobID] = @Original_FK_JobID) AND ([FK_BinID] = @Original_FK_BinID) AND ([XpectedQuantity] = @Original_XpectedQuantity));
-SELECT JobID_X_BinID, FK_JobID, FK_BinID, XpectedQuantity FROM JOB_X_BIN WHERE (JobID_X_BinID = @JobID_X_BinID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_JobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_JobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_BinID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_BinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@XpectedQuantity", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "XpectedQuantity", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_JobID_X_BinID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "JobID_X_BinID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_JobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_JobID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_BinID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_BinID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_XpectedQuantity", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "XpectedQuantity", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@JobID_X_BinID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "JobID_X_BinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Job_Verification_Application.Properties.Settings.Default.JobVerificationConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT JobID_X_BinID, FK_JobID, FK_BinID, XpectedQuantity FROM dbo.JOB_X_BIN";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(JobVerificationDataSet.JOB_X_BINDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual JobVerificationDataSet.JOB_X_BINDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            JobVerificationDataSet.JOB_X_BINDataTable dataTable = new JobVerificationDataSet.JOB_X_BINDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(JobVerificationDataSet.JOB_X_BINDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(JobVerificationDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "JOB_X_BIN");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_JobID_X_BinID, int Original_FK_JobID, byte Original_FK_BinID, byte Original_XpectedQuantity) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_JobID_X_BinID));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_FK_JobID));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((byte)(Original_FK_BinID));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((byte)(Original_XpectedQuantity));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int FK_JobID, byte FK_BinID, byte XpectedQuantity) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(FK_JobID));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((byte)(FK_BinID));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((byte)(XpectedQuantity));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int FK_JobID, byte FK_BinID, byte XpectedQuantity, int Original_JobID_X_BinID, int Original_FK_JobID, byte Original_FK_BinID, byte Original_XpectedQuantity, int JobID_X_BinID) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(FK_JobID));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((byte)(FK_BinID));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((byte)(XpectedQuantity));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_JobID_X_BinID));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_FK_JobID));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((byte)(Original_FK_BinID));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((byte)(Original_XpectedQuantity));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(JobID_X_BinID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int FK_JobID, byte FK_BinID, byte XpectedQuantity, int Original_JobID_X_BinID, int Original_FK_JobID, byte Original_FK_BinID, byte Original_XpectedQuantity) {
-            return this.Update(FK_JobID, FK_BinID, XpectedQuantity, Original_JobID_X_BinID, Original_FK_JobID, Original_FK_BinID, Original_XpectedQuantity, Original_JobID_X_BinID);
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class JOB_X_USERTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public JOB_X_USERTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "JOB_X_USER";
-            tableMapping.ColumnMappings.Add("FK_JobID", "FK_JobID");
-            tableMapping.ColumnMappings.Add("FK_UserID", "FK_UserID");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[JOB_X_USER] ([FK_JobID], [FK_UserID]) VALUES (@FK_JobID, @FK_U" +
-                "serID)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_JobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_JobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_UserID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Job_Verification_Application.Properties.Settings.Default.JobVerificationConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT FK_JobID, FK_UserID FROM dbo.JOB_X_USER";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(JobVerificationDataSet.JOB_X_USERDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual JobVerificationDataSet.JOB_X_USERDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            JobVerificationDataSet.JOB_X_USERDataTable dataTable = new JobVerificationDataSet.JOB_X_USERDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(JobVerificationDataSet.JOB_X_USERDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(JobVerificationDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "JOB_X_USER");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int FK_JobID, byte FK_UserID) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(FK_JobID));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((byte)(FK_UserID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
         }
     }
     
@@ -5666,27 +4481,43 @@ SELECT JobID_X_BinID, FK_JobID, FK_BinID, XpectedQuantity FROM JOB_X_BIN WHERE (
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "SEQUENCE";
+            tableMapping.ColumnMappings.Add("FK_BinID", "FK_BinID");
             tableMapping.ColumnMappings.Add("SequenceID", "SequenceID");
+            tableMapping.ColumnMappings.Add("Index", "Index");
+            tableMapping.ColumnMappings.Add("ScanDateTime", "ScanDateTime");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[SEQUENCE] WHERE (([SequenceID] = @Original_SequenceID))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[SEQUENCE] WHERE (([FK_BinID] = @Original_FK_BinID) AND ([Seque" +
+                "nceID] = @Original_SequenceID) AND ([Index] = @Original_Index) AND ([ScanDateTim" +
+                "e] = @Original_ScanDateTime))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_BinID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_BinID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SequenceID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SequenceID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Index", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Index", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ScanDateTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ScanDateTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[SEQUENCE] ([SequenceID]) VALUES (@SequenceID);\r\nSELECT Sequenc" +
-                "eID FROM SEQUENCE WHERE (SequenceID = @SequenceID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[SEQUENCE] ([FK_BinID], [Index], [ScanDateTime]) VALUES (@FK_Bi" +
+                "nID, @Index, @ScanDateTime);\r\nSELECT FK_BinID, SequenceID, [Index], ScanDateTime" +
+                " FROM SEQUENCE WHERE (SequenceID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SequenceID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SequenceID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_BinID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_BinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Index", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Index", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ScanDateTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ScanDateTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[SEQUENCE] SET [SequenceID] = @SequenceID WHERE (([SequenceID] = @Or" +
-                "iginal_SequenceID));\r\nSELECT SequenceID FROM SEQUENCE WHERE (SequenceID = @Seque" +
-                "nceID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[SEQUENCE] SET [FK_BinID] = @FK_BinID, [Index] = @Index, [ScanDateTime] = @ScanDateTime WHERE (([FK_BinID] = @Original_FK_BinID) AND ([SequenceID] = @Original_SequenceID) AND ([Index] = @Original_Index) AND ([ScanDateTime] = @Original_ScanDateTime));
+SELECT FK_BinID, SequenceID, [Index], ScanDateTime FROM SEQUENCE WHERE (SequenceID = @SequenceID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SequenceID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SequenceID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_BinID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_BinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Index", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Index", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ScanDateTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ScanDateTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_BinID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_BinID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SequenceID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SequenceID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Index", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Index", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ScanDateTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ScanDateTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SequenceID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "SequenceID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5702,7 +4533,7 @@ SELECT JobID_X_BinID, FK_JobID, FK_BinID, XpectedQuantity FROM JOB_X_BIN WHERE (
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT SequenceID FROM dbo.SEQUENCE";
+            this._commandCollection[0].CommandText = "SELECT FK_BinID, SequenceID, [Index], ScanDateTime FROM dbo.SEQUENCE";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5763,8 +4594,11 @@ SELECT JobID_X_BinID, FK_JobID, FK_BinID, XpectedQuantity FROM JOB_X_BIN WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_SequenceID) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_SequenceID));
+        public virtual int Delete(int Original_FK_BinID, int Original_SequenceID, int Original_Index, System.DateTime Original_ScanDateTime) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_FK_BinID));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_SequenceID));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_Index));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(Original_ScanDateTime));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5785,8 +4619,10 @@ SELECT JobID_X_BinID, FK_JobID, FK_BinID, XpectedQuantity FROM JOB_X_BIN WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int SequenceID) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SequenceID));
+        public virtual int Insert(int FK_BinID, int Index, System.DateTime ScanDateTime) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(FK_BinID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(Index));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(ScanDateTime));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5807,9 +4643,15 @@ SELECT JobID_X_BinID, FK_JobID, FK_BinID, XpectedQuantity FROM JOB_X_BIN WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int SequenceID, int Original_SequenceID) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(SequenceID));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Original_SequenceID));
+        public virtual int Update(int FK_BinID, int Index, System.DateTime ScanDateTime, int Original_FK_BinID, int Original_SequenceID, int Original_Index, System.DateTime Original_ScanDateTime, int SequenceID) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(FK_BinID));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Index));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(ScanDateTime));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_FK_BinID));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_SequenceID));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Index));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(Original_ScanDateTime));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(SequenceID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5830,238 +4672,8 @@ SELECT JobID_X_BinID, FK_JobID, FK_BinID, XpectedQuantity FROM JOB_X_BIN WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Original_SequenceID) {
-            return this.Update(Original_SequenceID, Original_SequenceID);
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SEQUENCE_X_BINTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public SEQUENCE_X_BINTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "SEQUENCE_X_BIN";
-            tableMapping.ColumnMappings.Add("FK_JobID_X_BinID", "FK_JobID_X_BinID");
-            tableMapping.ColumnMappings.Add("FK_SequenceID", "FK_SequenceID");
-            tableMapping.ColumnMappings.Add("ScanDateTime", "ScanDateTime");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[SEQUENCE_X_BIN] ([FK_JobID_X_BinID], [FK_SequenceID], [ScanDat" +
-                "eTime]) VALUES (@FK_JobID_X_BinID, @FK_SequenceID, @ScanDateTime)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_JobID_X_BinID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_JobID_X_BinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_SequenceID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_SequenceID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ScanDateTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ScanDateTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Job_Verification_Application.Properties.Settings.Default.JobVerificationConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT FK_JobID_X_BinID, FK_SequenceID, ScanDateTime FROM dbo.SEQUENCE_X_BIN";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(JobVerificationDataSet.SEQUENCE_X_BINDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual JobVerificationDataSet.SEQUENCE_X_BINDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            JobVerificationDataSet.SEQUENCE_X_BINDataTable dataTable = new JobVerificationDataSet.SEQUENCE_X_BINDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(JobVerificationDataSet.SEQUENCE_X_BINDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(JobVerificationDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "SEQUENCE_X_BIN");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int FK_JobID_X_BinID, int FK_SequenceID, System.DateTime ScanDateTime) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(FK_JobID_X_BinID));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(FK_SequenceID));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(ScanDateTime));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
+        public virtual int Update(int FK_BinID, int Index, System.DateTime ScanDateTime, int Original_FK_BinID, int Original_SequenceID, int Original_Index, System.DateTime Original_ScanDateTime) {
+            return this.Update(FK_BinID, Index, ScanDateTime, Original_FK_BinID, Original_SequenceID, Original_Index, Original_ScanDateTime, Original_SequenceID);
         }
     }
     
@@ -6229,16 +4841,11 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT UserID, UserFName, UserLName FROM dbo.[USER]";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT UserID, UserFName, UserLName,\r\nCONCAT(UserLName,\', \',UserFName) as Fullnam" +
-                "eLast\r\nFROM dbo.[USER]\r\nOrder by FullnameLast";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6263,19 +4870,6 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
             JobVerificationDataSet.USERDataTable dataTable = new JobVerificationDataSet.USERDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByFullnameLast(JobVerificationDataSet.USERDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6554,13 +5148,30 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
             tableMapping.ColumnMappings.Add("FK_UserID", "FK_UserID");
             tableMapping.ColumnMappings.Add("FK_BinID", "FK_BinID");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[USER_X_BIN] WHERE (([FK_UserID] = @Original_FK_UserID) AND ([F" +
+                "K_BinID] = @Original_FK_BinID))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_UserID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_BinID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_BinID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[USER_X_BIN] ([FK_UserID], [FK_BinID]) VALUES (@FK_UserID, @FK_" +
-                "BinID)";
+                "BinID);\r\nSELECT FK_UserID, FK_BinID FROM USER_X_BIN WHERE (FK_BinID = @FK_BinID)" +
+                " AND (FK_UserID = @FK_UserID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_UserID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_BinID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_BinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_BinID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_BinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[USER_X_BIN] SET [FK_UserID] = @FK_UserID, [FK_BinID] = @FK_BinID WHERE (([FK_UserID] = @Original_FK_UserID) AND ([FK_BinID] = @Original_FK_BinID));
+SELECT FK_UserID, FK_BinID FROM USER_X_BIN WHERE (FK_BinID = @FK_BinID) AND (FK_UserID = @FK_UserID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_UserID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_BinID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_BinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_UserID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_BinID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_BinID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6636,10 +5247,33 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(byte Original_FK_UserID, int Original_FK_BinID) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((byte)(Original_FK_UserID));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_FK_BinID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(byte FK_UserID, byte FK_BinID) {
+        public virtual int Insert(byte FK_UserID, int FK_BinID) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((byte)(FK_UserID));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((byte)(FK_BinID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(FK_BinID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6654,6 +5288,210 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(byte FK_UserID, int FK_BinID, byte Original_FK_UserID, int Original_FK_BinID) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((byte)(FK_UserID));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(FK_BinID));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((byte)(Original_FK_UserID));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_FK_BinID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(byte Original_FK_UserID, int Original_FK_BinID) {
+            return this.Update(Original_FK_UserID, Original_FK_BinID, Original_FK_UserID, Original_FK_BinID);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class JOB_X_USERTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public JOB_X_USERTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "JOB_X_USER";
+            tableMapping.ColumnMappings.Add("JobID", "JobID");
+            tableMapping.ColumnMappings.Add("BinID", "BinID");
+            tableMapping.ColumnMappings.Add("UserID", "UserID");
+            tableMapping.ColumnMappings.Add("UserFName", "UserFName");
+            tableMapping.ColumnMappings.Add("UserLName", "UserLName");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Job_Verification_Application.Properties.Settings.Default.JobVerificationConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT JobID, BinID, UserID, UserFName, UserLName FROM dbo.JOB_X_USER";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(JobVerificationDataSet.JOB_X_USERDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual JobVerificationDataSet.JOB_X_USERDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            JobVerificationDataSet.JOB_X_USERDataTable dataTable = new JobVerificationDataSet.JOB_X_USERDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
         }
     }
     
@@ -6675,13 +5513,7 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
         
         private JOBTableAdapter _jOBTableAdapter;
         
-        private JOB_X_BINTableAdapter _jOB_X_BINTableAdapter;
-        
-        private JOB_X_USERTableAdapter _jOB_X_USERTableAdapter;
-        
         private SEQUENCETableAdapter _sEQUENCETableAdapter;
-        
-        private SEQUENCE_X_BINTableAdapter _sEQUENCE_X_BINTableAdapter;
         
         private USERTableAdapter _uSERTableAdapter;
         
@@ -6749,54 +5581,12 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public JOB_X_BINTableAdapter JOB_X_BINTableAdapter {
-            get {
-                return this._jOB_X_BINTableAdapter;
-            }
-            set {
-                this._jOB_X_BINTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public JOB_X_USERTableAdapter JOB_X_USERTableAdapter {
-            get {
-                return this._jOB_X_USERTableAdapter;
-            }
-            set {
-                this._jOB_X_USERTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
         public SEQUENCETableAdapter SEQUENCETableAdapter {
             get {
                 return this._sEQUENCETableAdapter;
             }
             set {
                 this._sEQUENCETableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public SEQUENCE_X_BINTableAdapter SEQUENCE_X_BINTableAdapter {
-            get {
-                return this._sEQUENCE_X_BINTableAdapter;
-            }
-            set {
-                this._sEQUENCE_X_BINTableAdapter = value;
             }
         }
         
@@ -6859,21 +5649,9 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                             && (this._jOBTableAdapter.Connection != null))) {
                     return this._jOBTableAdapter.Connection;
                 }
-                if (((this._jOB_X_BINTableAdapter != null) 
-                            && (this._jOB_X_BINTableAdapter.Connection != null))) {
-                    return this._jOB_X_BINTableAdapter.Connection;
-                }
-                if (((this._jOB_X_USERTableAdapter != null) 
-                            && (this._jOB_X_USERTableAdapter.Connection != null))) {
-                    return this._jOB_X_USERTableAdapter.Connection;
-                }
                 if (((this._sEQUENCETableAdapter != null) 
                             && (this._sEQUENCETableAdapter.Connection != null))) {
                     return this._sEQUENCETableAdapter.Connection;
-                }
-                if (((this._sEQUENCE_X_BINTableAdapter != null) 
-                            && (this._sEQUENCE_X_BINTableAdapter.Connection != null))) {
-                    return this._sEQUENCE_X_BINTableAdapter.Connection;
                 }
                 if (((this._uSERTableAdapter != null) 
                             && (this._uSERTableAdapter.Connection != null))) {
@@ -6905,16 +5683,7 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                 if ((this._jOBTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._jOB_X_BINTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._jOB_X_USERTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._sEQUENCETableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._sEQUENCE_X_BINTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._uSERTableAdapter != null)) {
@@ -6943,15 +5712,6 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._bINTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.BIN.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._bINTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._jOBTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.JOB.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -6961,21 +5721,12 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._jOB_X_BINTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.JOB_X_BIN.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._bINTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.BIN.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._jOB_X_BINTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._sEQUENCETableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.SEQUENCE.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._sEQUENCETableAdapter.Update(updatedRows));
+                    result = (result + this._bINTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -6988,21 +5739,12 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._jOB_X_USERTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.JOB_X_USER.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._sEQUENCETableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.SEQUENCE.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._jOB_X_USERTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._sEQUENCE_X_BINTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.SEQUENCE_X_BIN.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._sEQUENCE_X_BINTableAdapter.Update(updatedRows));
+                    result = (result + this._sEQUENCETableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -7033,14 +5775,6 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._bINTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.BIN.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._bINTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._jOBTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.JOB.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -7049,19 +5783,11 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._jOB_X_BINTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.JOB_X_BIN.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._bINTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.BIN.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._jOB_X_BINTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._sEQUENCETableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.SEQUENCE.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._sEQUENCETableAdapter.Update(addedRows));
+                    result = (result + this._bINTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -7073,19 +5799,11 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._jOB_X_USERTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.JOB_X_USER.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._sEQUENCETableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.SEQUENCE.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._jOB_X_USERTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._sEQUENCE_X_BINTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.SEQUENCE_X_BIN.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._sEQUENCE_X_BINTableAdapter.Update(addedRows));
+                    result = (result + this._sEQUENCETableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -7115,19 +5833,11 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._sEQUENCE_X_BINTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.SEQUENCE_X_BIN.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._sEQUENCETableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.SEQUENCE.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._sEQUENCE_X_BINTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._jOB_X_USERTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.JOB_X_USER.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._jOB_X_USERTableAdapter.Update(deletedRows));
+                    result = (result + this._sEQUENCETableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -7139,19 +5849,11 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._sEQUENCETableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.SEQUENCE.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._bINTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.BIN.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._sEQUENCETableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._jOB_X_BINTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.JOB_X_BIN.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._jOB_X_BINTableAdapter.Update(deletedRows));
+                    result = (result + this._bINTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -7160,14 +5862,6 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._jOBTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._bINTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.BIN.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._bINTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -7233,23 +5927,8 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._jOB_X_BINTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._jOB_X_BINTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
-            if (((this._jOB_X_USERTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._jOB_X_USERTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             if (((this._sEQUENCETableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._sEQUENCETableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
-            if (((this._sEQUENCE_X_BINTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._sEQUENCE_X_BINTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -7322,24 +6001,6 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                         adaptersWithAcceptChangesDuringUpdate.Add(this._jOBTableAdapter.Adapter);
                     }
                 }
-                if ((this._jOB_X_BINTableAdapter != null)) {
-                    revertConnections.Add(this._jOB_X_BINTableAdapter, this._jOB_X_BINTableAdapter.Connection);
-                    this._jOB_X_BINTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._jOB_X_BINTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._jOB_X_BINTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._jOB_X_BINTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._jOB_X_BINTableAdapter.Adapter);
-                    }
-                }
-                if ((this._jOB_X_USERTableAdapter != null)) {
-                    revertConnections.Add(this._jOB_X_USERTableAdapter, this._jOB_X_USERTableAdapter.Connection);
-                    this._jOB_X_USERTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._jOB_X_USERTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._jOB_X_USERTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._jOB_X_USERTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._jOB_X_USERTableAdapter.Adapter);
-                    }
-                }
                 if ((this._sEQUENCETableAdapter != null)) {
                     revertConnections.Add(this._sEQUENCETableAdapter, this._sEQUENCETableAdapter.Connection);
                     this._sEQUENCETableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -7347,15 +6008,6 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                     if (this._sEQUENCETableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._sEQUENCETableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._sEQUENCETableAdapter.Adapter);
-                    }
-                }
-                if ((this._sEQUENCE_X_BINTableAdapter != null)) {
-                    revertConnections.Add(this._sEQUENCE_X_BINTableAdapter, this._sEQUENCE_X_BINTableAdapter.Connection);
-                    this._sEQUENCE_X_BINTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._sEQUENCE_X_BINTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._sEQUENCE_X_BINTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._sEQUENCE_X_BINTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._sEQUENCE_X_BINTableAdapter.Adapter);
                     }
                 }
                 if ((this._uSERTableAdapter != null)) {
@@ -7446,21 +6098,9 @@ SELECT UserID, UserFName, UserLName FROM [USER] WHERE (UserID = @UserID)";
                     this._jOBTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._jOBTableAdapter]));
                     this._jOBTableAdapter.Transaction = null;
                 }
-                if ((this._jOB_X_BINTableAdapter != null)) {
-                    this._jOB_X_BINTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._jOB_X_BINTableAdapter]));
-                    this._jOB_X_BINTableAdapter.Transaction = null;
-                }
-                if ((this._jOB_X_USERTableAdapter != null)) {
-                    this._jOB_X_USERTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._jOB_X_USERTableAdapter]));
-                    this._jOB_X_USERTableAdapter.Transaction = null;
-                }
                 if ((this._sEQUENCETableAdapter != null)) {
                     this._sEQUENCETableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._sEQUENCETableAdapter]));
                     this._sEQUENCETableAdapter.Transaction = null;
-                }
-                if ((this._sEQUENCE_X_BINTableAdapter != null)) {
-                    this._sEQUENCE_X_BINTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._sEQUENCE_X_BINTableAdapter]));
-                    this._sEQUENCE_X_BINTableAdapter.Transaction = null;
                 }
                 if ((this._uSERTableAdapter != null)) {
                     this._uSERTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._uSERTableAdapter]));
