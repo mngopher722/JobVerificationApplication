@@ -32,6 +32,8 @@ namespace Job_Verification_Application
 
         private void ScanningWindow_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'jobVerificationDataSet.USER_X_BIN' table. You can move, or remove it, as needed.
+            this.uSER_X_BINTableAdapter.Fill(this.jobVerificationDataSet.USER_X_BIN);
             LoadDataGrid();
         }
         public DataTable LoadDataGrid()
@@ -44,9 +46,19 @@ namespace Job_Verification_Application
                 SqlCommand cmdload = new SqlCommand("select FK_JobID as JobNumber, Index as SequenceNumber, ScanDateTime " +
                     "from SEQUENCE, BIN WHERE BinID = FK_BinID AND BinID = @BinID", conn);
                 SqlParameter BinId = new SqlParameter("@BinID", SqlDbType.Int);
+                SqlDataAdapter datagridview = new SqlDataAdapter(cmdload);
                 BinId.Value = binid;
                 DataTable Sequence = new DataTable();
-                Sequence.Load(cmdload.ExecuteReader());    
+                using(SqlDataReader sqldr = cmdload.ExecuteReader())
+                {
+                    Sequence.Load(sqlDataReader);
+                    sqlDataReader.Close();
+                }
+                DataGridView dataGridView1 = new DataGridView();
+                dataGridView1.DataSource = datagridview.FillSchema(Sequence, SchemaType.Source);
+                BindingSource bs = new BindingSource();
+                bs.DataSource = 
+                //Sequence.Load(cmdload.ExecuteReader());    
             }
             catch (Exception)
             {
