@@ -176,7 +176,7 @@ namespace Job_Verification_Application
                             conn.Open();
                             SqlParameter xqty = new SqlParameter("@XQty", SqlDbType.SmallInt);
                             SqlParameter binId = new SqlParameter("@BinID", SqlDbType.Int);
-                            xqty.Value = Convert.ToInt32(xqtyTextBox.Text);
+                            xqty.Value = Convert.ToInt16(xqtyTextBox.Text);
                             binId.Value = binid;
                             updateBinTable.Parameters.Add(xqty);
                             updateBinTable.Parameters.Add(binId);
@@ -194,7 +194,7 @@ namespace Job_Verification_Application
                                     SqlParameter BinId = new SqlParameter("@binid", SqlDbType.Int);
                                     User1id.Value = userOneID;
                                     User2id.Value = userTwoID;
-                                    BinId.Value = binid;
+                                    BinId.Value = this.binid;
                                     updateProcessTable.Parameters.Add(User1id);
                                     updateProcessTable.Parameters.Add(User2id);
                                     updateProcessTable.Parameters.Add(BinId);
@@ -208,11 +208,11 @@ namespace Job_Verification_Application
                                 using (SqlCommand updateProcessTable = new SqlCommand(processTableUpdate, conn))
                                 {
                                     SqlParameter userid = new SqlParameter("@UserID", SqlDbType.TinyInt);
-                                    SqlParameter binid = new SqlParameter("@binid", SqlDbType.Int);
+                                    SqlParameter BinId = new SqlParameter("@binid", SqlDbType.Int);
                                     userid.Value = userID;
-                                    binId.Value = binid;
+                                    BinId.Value = binid;
                                     updateProcessTable.Parameters.Add(userid);
-                                    updateProcessTable.Parameters.Add(binId);
+                                    updateProcessTable.Parameters.Add(BinId);
                                     updateProcessTable.CommandType = CommandType.Text;
                                     updateProcessTable.ExecuteNonQuery();
                                 }
@@ -256,13 +256,13 @@ namespace Job_Verification_Application
 
         private void mWUser1ComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            int u1 = Convert.ToInt32(mWUser1ComboBox.SelectedValue);
+            int u1 = Convert.ToInt16(mWUser1ComboBox.SelectedValue);
             userOneID = u1;
         }
 
         private void mWUser2ComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            int u2 = Convert.ToInt32(mWUser2ComboBox.SelectedValue);
+            int u2 = Convert.ToInt16(mWUser2ComboBox.SelectedValue);
             userTwoID = u2;
         }
 

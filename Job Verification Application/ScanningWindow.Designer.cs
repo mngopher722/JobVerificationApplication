@@ -30,21 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             this.sWJobDataGrid = new System.Windows.Forms.DataGridView();
-            this.jobVerificationDataSet = new Job_Verification_Application.JobVerificationDataSet();
-            this.sEQUENCEBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sEQUENCETableAdapter = new Job_Verification_Application.JobVerificationDataSetTableAdapters.SEQUENCETableAdapter();
             this.indexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scanDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sEQUENCEBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.jobVerificationDataSet = new Job_Verification_Application.JobVerificationDataSet();
+            this.sEQUENCETableAdapter = new Job_Verification_Application.JobVerificationDataSetTableAdapters.SEQUENCETableAdapter();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.sequenceMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.sWSubmitButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sWJobDataGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jobVerificationDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sEQUENCEBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jobVerificationDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // sWJobDataGrid
@@ -57,28 +57,15 @@
             this.scanDateTimeDataGridViewTextBoxColumn});
             this.sWJobDataGrid.DataSource = this.sEQUENCEBindingSource;
             this.sWJobDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.sWJobDataGrid.Location = new System.Drawing.Point(12, 54);
+            this.sWJobDataGrid.Location = new System.Drawing.Point(18, 83);
+            this.sWJobDataGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.sWJobDataGrid.Name = "sWJobDataGrid";
             this.sWJobDataGrid.ReadOnly = true;
             this.sWJobDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.sWJobDataGrid.Size = new System.Drawing.Size(245, 231);
+            this.sWJobDataGrid.Size = new System.Drawing.Size(368, 355);
             this.sWJobDataGrid.StandardTab = true;
             this.sWJobDataGrid.TabIndex = 10;
             this.sWJobDataGrid.TabStop = false;
-            // 
-            // jobVerificationDataSet
-            // 
-            this.jobVerificationDataSet.DataSetName = "JobVerificationDataSet";
-            this.jobVerificationDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // sEQUENCEBindingSource
-            // 
-            this.sEQUENCEBindingSource.DataMember = "SEQUENCE";
-            this.sEQUENCEBindingSource.DataSource = this.jobVerificationDataSet;
-            // 
-            // sEQUENCETableAdapter
-            // 
-            this.sEQUENCETableAdapter.ClearBeforeFill = true;
             // 
             // indexDataGridViewTextBoxColumn
             // 
@@ -94,85 +81,108 @@
             this.scanDateTimeDataGridViewTextBoxColumn.Name = "scanDateTimeDataGridViewTextBoxColumn";
             this.scanDateTimeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // sEQUENCEBindingSource
+            // 
+            this.sEQUENCEBindingSource.DataMember = "SEQUENCE";
+            this.sEQUENCEBindingSource.DataSource = this.jobVerificationDataSet;
+            // 
+            // jobVerificationDataSet
+            // 
+            this.jobVerificationDataSet.DataSetName = "JobVerificationDataSet";
+            this.jobVerificationDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // sEQUENCETableAdapter
+            // 
+            this.sEQUENCETableAdapter.ClearBeforeFill = true;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(77, 22);
+            this.label1.Location = new System.Drawing.Point(116, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(51, 20);
             this.label1.TabIndex = 11;
             this.label1.Text = "label1";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(154, 22);
+            this.label2.Location = new System.Drawing.Point(231, 34);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(51, 20);
             this.label2.TabIndex = 12;
             this.label2.Text = "label2";
             // 
-            // maskedTextBox1
+            // sequenceMaskedTextBox
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(12, 315);
-            this.maskedTextBox1.Mask = "00000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox1.TabIndex = 0;
+            this.sequenceMaskedTextBox.Location = new System.Drawing.Point(18, 485);
+            this.sequenceMaskedTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.sequenceMaskedTextBox.Mask = "00000";
+            this.sequenceMaskedTextBox.Name = "sequenceMaskedTextBox";
+            this.sequenceMaskedTextBox.Size = new System.Drawing.Size(148, 26);
+            this.sequenceMaskedTextBox.TabIndex = 0;
             // 
             // maskedTextBox2
             // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(157, 315);
+            this.maskedTextBox2.Location = new System.Drawing.Point(236, 485);
+            this.maskedTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBox2.Size = new System.Drawing.Size(148, 26);
             this.maskedTextBox2.TabIndex = 1;
             // 
-            // button1
+            // sWSubmitButton
             // 
-            this.button1.Location = new System.Drawing.Point(101, 358);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.sWSubmitButton.Location = new System.Drawing.Point(152, 551);
+            this.sWSubmitButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.sWSubmitButton.Name = "sWSubmitButton";
+            this.sWSubmitButton.Size = new System.Drawing.Size(112, 35);
+            this.sWSubmitButton.TabIndex = 2;
+            this.sWSubmitButton.Text = "Submit";
+            this.sWSubmitButton.UseVisualStyleBackColor = true;
+            this.sWSubmitButton.Click += new System.EventHandler(this.sWSubmitButton_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 299);
+            this.label3.Location = new System.Drawing.Point(24, 460);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(146, 20);
             this.label3.TabIndex = 16;
-            this.label3.Text = "label3";
+            this.label3.Text = "Sequence Number ";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(190, 299);
+            this.label4.Location = new System.Drawing.Point(267, 460);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(92, 20);
             this.label4.TabIndex = 17;
-            this.label4.Text = "label4";
+            this.label4.Text = "Bin Number";
             // 
             // ScanningWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 393);
+            this.ClientSize = new System.Drawing.Size(411, 605);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.sWSubmitButton);
             this.Controls.Add(this.maskedTextBox2);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.sequenceMaskedTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.sWJobDataGrid);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ScanningWindow";
             this.Text = "ScanningWindow";
             this.Load += new System.EventHandler(this.ScanningWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sWJobDataGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jobVerificationDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sEQUENCEBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jobVerificationDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,9 +198,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn scanDateTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox sequenceMaskedTextBox;
         private System.Windows.Forms.MaskedTextBox maskedTextBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button sWSubmitButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
     }

@@ -30,12 +30,14 @@ namespace Job_Verification_Application
         public ScanningWindow(object binid)
         {
             this.binid = binid;
+            InitializeComponent();
+            LoadDataGrid();
         }
 
         private void ScanningWindow_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'jobVerificationDataSet.SEQUENCE' table. You can move, or remove it, as needed.
-            this.sEQUENCETableAdapter.Fill(this.jobVerificationDataSet.SEQUENCE);        
+            //this.sEQUENCETableAdapter.Fill(this.jobVerificationDataSet.SEQUENCE);        
 
         }
         [STAThread]
@@ -46,11 +48,12 @@ namespace Job_Verification_Application
             try
             {
                 conn.Open();
-                SqlCommand cmdload = new SqlCommand("select FK_JobID as JobNumber, Index as SequenceNumber, ScanDateTime " +
+                SqlCommand cmdload = new SqlCommand("select FK_JobID as JobNumber, [dbo].[SEQUENCE].[Index] as SequenceNumber, ScanDateTime " +
                     "from SEQUENCE, BIN WHERE BinID = FK_BinID AND BinID = @BinID", conn);
-                SqlParameter BinId = new SqlParameter("@BinID", SqlDbType.Int);
-                SqlDataAdapter datagridview = new SqlDataAdapter(cmdload);
+                SqlParameter BinId = new SqlParameter("BinID", SqlDbType.Int);
                 BinId.Value = binid;
+                cmdload.Parameters.Add(BinId);
+                SqlDataAdapter datagridview = new SqlDataAdapter(cmdload);
                 DataTable Sequence = new DataTable();
                 using (SqlDataReader sqldr = cmdload.ExecuteReader())
                 {
@@ -65,10 +68,44 @@ namespace Job_Verification_Application
                 //sWJobDataGrid.DataMember = Sequence.Table[0];
                 //Sequence.Load(cmdload.ExecuteReader());    
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //Exception Message
-                MessageBox.Show("Connection to the database has quit. Please reload Database");
+                MessageBox.Show("Connection to the database has quit. Please reload Database" + ex.Message + " " + ex.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+        private void sWSubmitButton_Click(object sender, EventArgs e)
+        {
+            Connection_Query con = Connection_Query.INSTANCE;
+            SqlConnection conn = con.con;
+            try
+            {
+                conn.Open();
+                string processTableUpdate = "INSERT into SEQUENCE(FK_BinID, [dbo].[SEQUENCE].[INDEX], ScanDateTime) VALUES(@binid, @[Index], @ScanDT)";
+                using (SqlCommand updateProcessTable = new SqlCommand(processTableUpdate, conn))
+                {
+                    SqlParameter BinId = new SqlParameter("@binid", SqlDbType.Int);
+                    SqlParameter indx = new SqlParameter("@[Index]", SqlDbType.Int);
+                    SqlParameter scan = new SqlParameter("@ScanDT", SqlDbType.DateTime);
+                    BinId.Value = binid;
+                    indx.Value = sequenceMaskedTextBox.Text;
+                    scan.Value = DateTime.Now.ToLocalTime();
+                    updateProcessTable.Parameters.Add(indx);
+                    updateProcessTable.Parameters.Add(BinId);
+                    updateProcessTable.CommandType = CommandType.Text;
+                    updateProcessTable.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                //Exception Message
+                MessageBox.Show("Connection to the database has quit. Please reload Database" + ex.Message + " " + ex.StackTrace);
             }
             finally
             {
