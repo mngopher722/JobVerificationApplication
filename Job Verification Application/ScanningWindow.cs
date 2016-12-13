@@ -82,11 +82,12 @@ namespace Job_Verification_Application
 
         private void sWSubmitButton_Click(object sender, EventArgs e)
         {
+            
             Connection_Query con = Connection_Query.INSTANCE;
             SqlConnection conn = con.con;
+            con.OpenConnection();
             try
             {
-                conn.Open();
                 string processTableUpdate = "INSERT into SEQUENCE(FK_BinID, [dbo].[SEQUENCE].[INDEX], ScanDateTime) VALUES(@binid, @[Index], @ScanDT)";
                 using (SqlCommand updateProcessTable = new SqlCommand(processTableUpdate, conn))
                 {
@@ -110,7 +111,7 @@ namespace Job_Verification_Application
             finally
             {
                 conn.Close();
-                conn.Dispose();
+                con.CloseConnection();
             }
         }
     }
