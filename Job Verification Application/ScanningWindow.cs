@@ -98,7 +98,7 @@ namespace Job_Verification_Application
                     indx.Value = sequenceMaskedTextBox.Text;
                     scan.Value = DateTime.Now.ToLocalTime();
                     updateProcessTable.Parameters.Add(indx);
-                    updateProcessTable.Parameters.Add(BinId);
+                    updateProcessTable.Parameters.AddWithValue("@binid", binid);
                     updateProcessTable.CommandType = CommandType.Text;
                     updateProcessTable.ExecuteNonQuery();
                 }

@@ -212,7 +212,7 @@ namespace Job_Verification_Application
                                     userid.Value = userID;
                                     BinId.Value = binid;
                                     updateProcessTable.Parameters.Add(userid);
-                                    updateProcessTable.Parameters.Add(BinId);
+                                    updateProcessTable.Parameters.AddWithValue("@binid", this.binid);
                                     updateProcessTable.CommandType = CommandType.Text;
                                     updateProcessTable.ExecuteNonQuery();
                                 }
