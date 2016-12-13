@@ -94,7 +94,7 @@ namespace Job_Verification_Application
                     SqlParameter BinId = new SqlParameter("@binid", SqlDbType.Int);
                     SqlParameter indx = new SqlParameter("@[Index]", SqlDbType.Int);
                     SqlParameter scan = new SqlParameter("@ScanDT", SqlDbType.DateTime);
-                    BinId.Value = binid;
+                    BinId.Value = this.binid;
                     indx.Value = sequenceMaskedTextBox.Text;
                     scan.Value = DateTime.Now.ToLocalTime();
                     updateProcessTable.Parameters.Add(indx);
