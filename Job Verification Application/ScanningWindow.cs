@@ -84,8 +84,8 @@ namespace Job_Verification_Application
         {
             
             Connection_Query con = Connection_Query.INSTANCE;
-            SqlConnection conn = con.con;
             con.OpenConnection();
+            SqlConnection conn = con.con;
             try
             {
                 string processTableUpdate = "INSERT into SEQUENCE(FK_BinID, [dbo].[SEQUENCE].[INDEX], ScanDateTime) VALUES(@binid, @[Index], @ScanDT)";
