@@ -44,10 +44,10 @@ namespace Job_Verification_Application
         private void LoadDataGrid()
         { 
             Connection_Query con = Connection_Query.INSTANCE;
+            con.OpenConnection();
             SqlConnection conn = con.con;
             try
             {
-                conn.Open();
                 SqlCommand cmdload = new SqlCommand("select FK_JobID as JobNumber, [dbo].[SEQUENCE].[Index] as SequenceNumber, ScanDateTime " +
                     "from SEQUENCE, BIN WHERE BinID = FK_BinID AND BinID = @BinID", conn);
                 SqlParameter BinId = new SqlParameter("BinID", SqlDbType.Int);
@@ -75,7 +75,7 @@ namespace Job_Verification_Application
             }
             finally
             {
-                conn.Close();
+                con.CloseConnection();
                 conn.Dispose();
             }
         }
@@ -110,8 +110,8 @@ namespace Job_Verification_Application
             }
             finally
             {
-                conn.Close();
                 con.CloseConnection();
+                conn.Dispose();
             }
         }
     }
