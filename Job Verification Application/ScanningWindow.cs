@@ -15,8 +15,8 @@ namespace Job_Verification_Application
     public partial class ScanningWindow : Form
     {
         
-        //string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification";
-        string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
+        string conString = @"Data Source=LENOVO-PC\SQLEXPRESS;Initial Catalog=JobVerification";
+        //string conString = @"Data Source=MHDC2\SQLEXPRESS2014;Initial Catalog=JobVerification;User ID=Ticketmaster";
         private object binid;
 
         public DataTable Sequence { get; private set; }
@@ -50,7 +50,7 @@ namespace Job_Verification_Application
             {
                 SqlCommand cmdload = new SqlCommand("select FK_JobID as JobNumber, [dbo].[SEQUENCE].[Index] as SequenceNumber, ScanDateTime " +
                     "from SEQUENCE, BIN WHERE BinID = FK_BinID AND BinID = @BinID", conn);
-                SqlParameter BinId = new SqlParameter("BinID", SqlDbType.Int);
+                SqlParameter BinId = new SqlParameter("@BinID", SqlDbType.Int);
                 BinId.Value = binid;
                 cmdload.Parameters.Add(BinId);
                 SqlDataAdapter datagridview = new SqlDataAdapter(cmdload);
@@ -82,25 +82,26 @@ namespace Job_Verification_Application
 
         private void sWSubmitButton_Click(object sender, EventArgs e)
         {
-            
+            int bin = Convert.ToInt32(binid);
             Connection_Query con = Connection_Query.INSTANCE;
             con.OpenConnection();
             SqlConnection conn = con.con;
             try
             {
                 string processTableUpdate = "INSERT into SEQUENCE(FK_BinID, [dbo].[SEQUENCE].[INDEX], ScanDateTime) VALUES(@binid, @[Index], @ScanDT)";
-                using (SqlCommand updateProcessTable = new SqlCommand(processTableUpdate, conn))
+                using(SqlCommand updateProcessTable = new SqlCommand(processTableUpdate, conn))
                 {
                     SqlParameter BinId = new SqlParameter("@binid", SqlDbType.Int);
                     SqlParameter indx = new SqlParameter("@[Index]", SqlDbType.Int);
                     SqlParameter scan = new SqlParameter("@ScanDT", SqlDbType.DateTime);
-                    BinId.Value = this.binid;
+                    BinId.Value = bin;
                     indx.Value = sequenceMaskedTextBox.Text;
                     scan.Value = DateTime.Now.ToLocalTime();
+                    updateProcessTable.Parameters.Add(BinId);
                     updateProcessTable.Parameters.Add(indx);
-                    updateProcessTable.Parameters.AddWithValue("@binid", binid);
+                    updateProcessTable.Parameters.Add(scan);
                     updateProcessTable.CommandType = CommandType.Text;
-                    updateProcessTable.ExecuteNonQuery();
+                    updateProcessTable.ExecuteScalar();
                 }
             }
             catch (Exception ex)
